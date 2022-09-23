@@ -6,7 +6,7 @@ export default {
     }
   },
   '$store.state.isMenuOpen'() {
-    if (this.$sore.state.isMenuOpen)
+    if (this.$store.state.isMenuOpen)
     {
       this.openBase = true
     } else {
