@@ -1,16 +1,22 @@
 <script>
-import { ViewList } from "tdesign-icons-vue-next";
 export default {
-  components: { ViewList }
+  methods: {
+    openMenuDrawer() {
+      this.$store.commit('updateMenuStatus')
+    }
+  }
 }
 </script>
 
 <template>
   <div class="home">
-    <t-navbar>
-      心电社区
-      <template #right>
-        <view-list></view-list>
+    <t-navbar
+      @click-right="openMenuDrawer()"
+      title=""
+      :leftArrow="false"
+    >
+      <template #left>
+        心电社区
       </template>
     </t-navbar>
   </div>
