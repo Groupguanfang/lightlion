@@ -1,6 +1,8 @@
 <script>
+import Swiper from "../components/Home/Swiper.vue"
 export default {
-  methods: {
+  components: {
+    Swiper
   }
 }
 </script>
@@ -16,5 +18,7 @@ export default {
         心电社区
       </template>
     </t-navbar>
+    
+    <Swiper />
   </div>
 </template>
