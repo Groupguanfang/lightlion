@@ -5,14 +5,16 @@ export default {
       openBase: false
     }
   },
-  '$store.state.isMenuOpen'() {
-    if (this.$store.state.isMenuOpen)
-    {
-      this.openBase = true
-    } else {
-      this.openBase = false
+  watch: {
+    '$store.state.isMenuOpen'() {
+      if (this.$store.state.isMenuOpen)
+      {
+        this.openBase = true
+      } else {
+        this.openBase = false
+      }
     }
-  }
+  },
 }
 </script>
 
