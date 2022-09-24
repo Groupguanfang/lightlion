@@ -1,8 +1,9 @@
 <script>
 import Swiper from "../components/Home/Swiper.vue"
+import AppGird from "../components/Home/AppGird.vue"
 export default {
   components: {
-    Swiper
+    Swiper,AppGird
   }
 }
 </script>
@@ -20,5 +21,7 @@ export default {
     </t-navbar>
     
     <Swiper />
+    
+    <AppGird />
   </div>
 </template>
