@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .item {
   width: 100%;
   object-fit: cover;

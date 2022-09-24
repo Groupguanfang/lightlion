@@ -8,16 +8,28 @@ export default {
           title: "首页",
           key: "/",
         },
+        {
+          title: "腕上B站",
+          key: "/bilibili",
+        },
+        {
+          title: "腕上资讯",
+          key: "/news",
+        },
+        {
+          title: "腕上小说",
+          key: "/novel",
+        },
+        {
+          title: "腕上樱花",
+          key: "/animation",
+        },
       ],
+      // 跳转方法
       itemClick: (index, item, context) => {
         this.$router.push(item.key);
       },
     };
-  },
-  methods: {
-    clickAction(index, item) {
-      console.log(index);
-    },
   },
   watch: {
     "$store.state.isMenuOpen"() {
