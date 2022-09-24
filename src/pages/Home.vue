@@ -1,8 +1,9 @@
 <script>
 import Swiper from "../components/Home/Swiper.vue";
 import AppGird from "../components/Home/AppGird.vue";
+import { ViewListIcon } from "tdesign-icons-vue-next";
 export default {
-  components: { Swiper, AppGird },
+  components: { Swiper, AppGird, ViewListIcon },
   data() {
     return {
       notice: true,
@@ -13,13 +14,12 @@ export default {
 
 <template>
   <div class="home padding">
-    <t-navbar
-      @click-right="$store.commit('updateMenuStatus')"
-      title=""
-      :leftArrow="false"
-    >
+    <t-navbar :right-show="false" title="" :leftArrow="false">
       <template #left>
         <h1>心电社区</h1>
+      </template>
+      <template #right>
+        <ViewListIcon @click="$store.commit('updateMenuStatus')" />
       </template>
     </t-navbar>
     <Swiper />
@@ -43,5 +43,8 @@ export default {
 }
 .home .t-navbar .t-navbar__back {
   left: 0;
+}
+.home .t-navbar .t-navbar__right {
+  right: 5px;
 }
 </style>
