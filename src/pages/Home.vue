@@ -1,8 +1,6 @@
 <script>
 export default {
   methods: {
-    openMenuDrawer() {
-      this.$store.commit('updateMenuStatus')
     }
   }
 }
@@ -11,7 +9,7 @@ export default {
 <template>
   <div class="home">
     <t-navbar
-      @click-right="openMenuDrawer()"
+      @click-right="$store.commit('updateMenuStatus')"
       title=""
       :leftArrow="false"
     >
