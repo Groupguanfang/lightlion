@@ -5,6 +5,7 @@ export default createStore({
     downLoadPage: {
       isBilibiliOpen: false,
     },
+    isLogin: false,
   },
   mutations: {
     updateBilibiliStatus(state) {

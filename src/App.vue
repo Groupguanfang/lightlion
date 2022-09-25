@@ -1,7 +1,8 @@
 <script>
 import BilibiliDownLoad from "./pages/Bilibili.vue";
+import TabBar from "./components/TabBar.vue";
 export default {
-  components: { BilibiliDownLoad },
+  components: { BilibiliDownLoad, TabBar },
   watch: {
     // 腕上B站
     "$store.state.downLoadPage.isBilibiliOpen"() {
@@ -22,6 +23,7 @@ export default {
     <!-- 主要内容 -->
     <div class="root" id="root">
       <router-view />
+      <TabBar />
     </div>
     <!-- 覆层 -->
     <BilibiliDownLoad />
