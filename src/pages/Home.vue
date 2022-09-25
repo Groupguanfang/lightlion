@@ -2,7 +2,6 @@
 import Swiper from "../components/Home/Swiper.vue";
 import AppGird from "../components/Home/AppGird.vue";
 import { ViewListIcon } from "tdesign-icons-vue-next";
-import { getPost } from "../api/Home";
 export default {
   components: { Swiper, AppGird, ViewListIcon },
   data() {
@@ -11,7 +10,7 @@ export default {
     };
   },
   mounted() {
-    getPost();
+    console.log(import.meta.env);
   },
 };
 </script>
