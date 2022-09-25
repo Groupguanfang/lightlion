@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@vitejs/plugin-vue': ^3.1.0
   axios: ^0.27.2
+  nativeshare: ^2.1.5
   tdesign-icons-vue-next: ^0.1.5
   tdesign-mobile-vue: ^0.10.6
   vite: ^3.1.0
@@ -12,6 +13,7 @@ specifiers:
 
 dependencies:
   axios: 0.27.2
+  nativeshare: 2.1.5
   tdesign-icons-vue-next: 0.1.5_vue@3.2.39
   tdesign-mobile-vue: 0.10.6_vue@3.2.39
   vue: registry.npmmirror.com/vue/3.2.39
@@ -348,6 +350,10 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: false
+
+  /nativeshare/2.1.5:
+    resolution: {integrity: sha512-fuk7rjpWxAGXjbi8ROJDaf/+6N2WYGfAiZDT+f0pRnOsC3+ame+KvWguQmbNGj2826SgU3XJeNR3IAq1Td324A==}
     dev: false
 
   /regenerator-runtime/0.13.9:

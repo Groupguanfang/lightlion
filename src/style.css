@@ -1,7 +1,15 @@
 body {
   margin: 0;
   padding: 0;
+  background: white;
+  transition: ease 0.2s;
 }
+
+.deepbody {
+  background: black;
+  transition: ease 0.2s;
+}
+
 .padding {
-    padding: 14px;
+  padding: 14px;
 }
