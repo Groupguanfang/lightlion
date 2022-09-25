@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "tdesign-icons-vue-next": "^0.1.5",
     "tdesign-mobile-vue": "^0.10.6",
     "vue": "^3.2.37",
