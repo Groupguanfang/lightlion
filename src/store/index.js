@@ -13,7 +13,7 @@ export default createStore({
     },
     updateBilibiliStatus(state) {
       state.downLoadPage.isBilibiliOpen =
-        !$store.state.downLoadPage.isBilibiliOpen;
+        !state.downLoadPage.isBilibiliOpen;
     },
   },
   actions: {},
