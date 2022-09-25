@@ -43,8 +43,12 @@ export default {
       class="downLoadPopup"
       v-model="isOpen"
       placement="bottom"
+      :lockScroll="false"
     >
-      <div style="width: 100%; height: 100%; background: #fff">
+      <div
+        style="width: 100%; height: 100%; background: #fff; overflow-y: auto"
+      >
+        <!-- 开始头部 -->
         <img class="cover" src="../assets/default-swiper.jpeg" />
         <div class="head-container padding">
           <div class="left">
@@ -56,7 +60,11 @@ export default {
               <div class="description">在手表上看B站！</div>
             </div>
             <div class="bottom">
-              <a href="" target="_blank" class="link">
+              <a
+                href="https://apps.apple.com/cn/app/腕上资讯/id1632611843"
+                target="_blank"
+                class="link"
+              >
                 <t-button size="small" theme="primary" shape="round">
                   下载
                 </t-button>
@@ -64,6 +72,28 @@ export default {
               <ShareIcon @click="shareAction()" style="font-size: 24px" />
             </div>
           </div>
+        </div>
+        <!-- 头部结束 -->
+        <!-- 开始身体 -->
+        <div class="info padding">
+          <h2>说明</h2>
+          <t-steps layout="vertical" readonly>
+            <t-step
+              status="process"
+              title="第一步"
+              content="点击上面的下载按钮下载腕上资讯APP"
+            />
+            <t-step
+              status="process"
+              title="第二步"
+              content="复制口令“LightningLion”，打开刚下载的app后，点击按钮付款"
+            />
+            <t-step
+              status="process"
+              title="第三步"
+              content="在手表上找到腕上B站图标，开始使用"
+            />
+          </t-steps>
         </div>
       </div>
     </t-popup>

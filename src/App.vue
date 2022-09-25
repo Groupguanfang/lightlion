@@ -24,9 +24,7 @@ export default {
       <router-view />
     </div>
     <!-- 覆层 -->
-    <div class="drawer">
-      <BilibiliDownLoad />
-    </div>
+    <BilibiliDownLoad />
   </div>
 </template>
 
@@ -43,9 +41,12 @@ export default {
   transform: scale(0.93);
   transition: ease 0.2s;
   border-radius: 8px;
-  overflow-y: hidden;
+  overflow: hidden !important;
 }
 .app {
+  overflow: hidden;
+}
+#app {
   overflow: hidden;
 }
 </style>

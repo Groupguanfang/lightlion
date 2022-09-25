@@ -37,6 +37,9 @@ export default {
 </template>
 
 <style>
+.home {
+  height: 100%;
+}
 .home #home-notice {
   margin-top: 10px;
   border-radius: 8px;
