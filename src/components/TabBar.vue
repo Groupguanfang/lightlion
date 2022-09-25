@@ -6,6 +6,19 @@ import {
 } from "tdesign-icons-vue-next";
 export default {
   components: { HomeIcon, LogoWindowsIcon, UserCircleIcon },
+  methods: {
+    action() {
+      if (
+        localStorage.getItem("cookie") === null ||
+        localStorage.getItem("cookie") === undefined ||
+        localStorage.getItem("cookie") === ""
+      ) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/usercenter");
+      }
+    },
+  },
 };
 </script>
 
@@ -27,14 +40,14 @@ export default {
         发现
       </t-tab-bar-item>
     </router-link>
-    <router-link to="/usercenter">
+    <span @click="action()">
       <t-tab-bar-item>
         <template #icon>
           <UserCircleIcon />
         </template>
         我的
       </t-tab-bar-item>
-    </router-link>
+    </span>
   </t-tab-bar>
 </template>
 
