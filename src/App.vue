@@ -1,9 +1,10 @@
 <script>
-import MenuDrawer from "./components/Menu.vue";
 import BilibiliDownLoad from "./pages/Bilibili.vue";
+import TabBar from "./components/TabBar.vue";
 export default {
-  components: { MenuDrawer, BilibiliDownLoad },
+  components: { BilibiliDownLoad, TabBar },
   watch: {
+    // 腕上B站
     "$store.state.downLoadPage.isBilibiliOpen"() {
       if (this.$store.state.downLoadPage.isBilibiliOpen) {
         document.getElementById("root").classList.add("deep");
@@ -19,13 +20,13 @@ export default {
 
 <template>
   <div class="app">
+    <!-- 主要内容 -->
     <div class="root" id="root">
       <router-view />
+      <TabBar />
     </div>
-    <div class="drawer">
-      <BilibiliDownLoad />
-    </div>
-    <menu-drawer />
+    <!-- 覆层 -->
+    <BilibiliDownLoad />
   </div>
 </template>
 
@@ -42,9 +43,12 @@ export default {
   transform: scale(0.93);
   transition: ease 0.2s;
   border-radius: 8px;
-  overflow-y: hidden;
+  overflow: hidden !important;
 }
 .app {
+  overflow: hidden;
+}
+#app {
   overflow: hidden;
 }
 </style>
