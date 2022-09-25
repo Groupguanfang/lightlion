@@ -1,5 +1,8 @@
 <script>
+import NativeShare from "nativeshare";
+import { ShareIcon } from "tdesign-icons-vue-next";
 export default {
+  components: { ShareIcon },
   data() {
     return {
       isOpen: false,
@@ -8,6 +11,17 @@ export default {
   methods: {
     closePop() {
       this.$store.commit("updateBilibiliStatus");
+    },
+    shareAction() {
+      let nativeShare = new NativeShare();
+      try {
+        nativeShare.call();
+      } catch (err) {
+        this.$toast.fail({
+          direction: "column",
+          message: "当前浏览器不支持分享",
+        });
+      }
     },
   },
   watch: {
@@ -41,11 +55,14 @@ export default {
               <div class="title">腕上B站</div>
               <div class="description">在手表上看B站！</div>
             </div>
-            <a href="" target="_blank" class="link">
-              <t-button size="small" theme="primary" shape="round">
-                下载
-              </t-button>
-            </a>
+            <div class="bottom">
+              <a href="" target="_blank" class="link">
+                <t-button size="small" theme="primary" shape="round">
+                  下载
+                </t-button>
+              </a>
+              <ShareIcon @click="shareAction()" style="font-size: 24px" />
+            </div>
           </div>
         </div>
       </div>
@@ -76,6 +93,11 @@ export default {
   margin-left: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+.downLoadPopup .head-container .right .bottom {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .downLoadPopup .head-container .right .title {

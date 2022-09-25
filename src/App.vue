@@ -7,8 +7,10 @@ export default {
     "$store.state.downLoadPage.isBilibiliOpen"() {
       if (this.$store.state.downLoadPage.isBilibiliOpen) {
         document.getElementById("root").classList.add("deep");
+        document.querySelector("body").classList.add("deepbody");
       } else {
         document.getElementById("root").classList.remove("deep");
+        document.querySelector("body").classList.remove("deepbody");
       }
     },
   },
