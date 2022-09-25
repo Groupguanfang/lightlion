@@ -40,6 +40,7 @@ export default {
   transform: scale(0.93);
   transition: ease 0.2s;
   border-radius: 8px;
+  overflow-y: hidden;
 }
 .app {
   overflow: hidden;
