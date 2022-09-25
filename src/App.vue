@@ -7,7 +7,9 @@ export default {
 
 <template>
   <div class="app">
-    <router-view />
+    <div class="root">
+      <router-view />
+    </div>
     <menu-drawer />
   </div>
 </template>

@@ -9,9 +9,6 @@ export default {
       notice: true,
     };
   },
-  mounted() {
-    console.log(import.meta.env);
-  },
 };
 </script>
 
