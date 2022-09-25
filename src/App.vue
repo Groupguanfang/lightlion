@@ -1,9 +1,9 @@
 <script>
-import MenuDrawer from "./components/Menu.vue";
 import BilibiliDownLoad from "./pages/Bilibili.vue";
 export default {
-  components: { MenuDrawer, BilibiliDownLoad },
+  components: { BilibiliDownLoad },
   watch: {
+    // 腕上B站
     "$store.state.downLoadPage.isBilibiliOpen"() {
       if (this.$store.state.downLoadPage.isBilibiliOpen) {
         document.getElementById("root").classList.add("deep");
@@ -19,13 +19,14 @@ export default {
 
 <template>
   <div class="app">
+    <!-- 主要内容 -->
     <div class="root" id="root">
       <router-view />
     </div>
+    <!-- 覆层 -->
     <div class="drawer">
       <BilibiliDownLoad />
     </div>
-    <menu-drawer />
   </div>
 </template>
 
