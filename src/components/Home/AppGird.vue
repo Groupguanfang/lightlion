@@ -3,6 +3,7 @@
     <t-grid :column="3">
       <t-grid-item
         text="腕上B站"
+        @click=""
         image="https://td.xhhzs.cn/wp-content/uploads/2022/09/1664019066-PNG图像.png"
         description="For Apple Watch"
       />
