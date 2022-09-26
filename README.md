@@ -5,9 +5,8 @@ This is the LightLion's Official Website Source,making by Zero.
 
 But... I don't know it can success in the future.All in all,All Do it!
 
-## Function List
-* Interchange with Eachother.
-* 
+## Function
+### Login & Register
 
 
 # Teconological Stacks
