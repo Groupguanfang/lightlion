@@ -19,7 +19,7 @@ export default {
   <div class="post-list">
     <t-list>
       <t-cell v-for="item in post" :key="item">
-        <router-link :to='"post/' + item.id">
+        <router-link :to="'/post/' + item.id">
           <span class="cell">
             {{ item.title }}
           </span>
