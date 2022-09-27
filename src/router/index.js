@@ -13,7 +13,11 @@ const routes = [
   {
     path: "/discover",
     component: () => import("../pages/Discover.vue")
-  }
+  },
+  {
+    path: "/post/:id",
+    component: () => import("../pages/Post/PostItem.vue")
+  },
 ];
 
 const router = createRouter({
