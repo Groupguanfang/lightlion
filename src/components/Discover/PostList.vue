@@ -1,4 +1,4 @@
-<script>
+/<script>
 import axios from "../../utils/axios";
 import { getPost } from "../../api/Home";
 export default {
@@ -17,17 +17,14 @@ export default {
 
 <template>
   <div class="post-list">
-  <!--
     <t-list>
-      <t-cell v-for="(item,index) in post" :key="index">
-      {{ item.title }}
+      <t-cell v-for="item in post" :key="item">
+        <router-link :to='"post/' + item.id">
+          <span class="cell">
+            {{ item.title }}
+          </span>
+        </router-link>
       </t-cell>
     </t-list>
-  -->
-  <t-list>
-    <t-cell v-for="item in post" :key="item">
-      <span class="cell">{{ item.title }}</span>
-    </t-cell>
-  </t-list>
   </div>
 </template>
