@@ -23,7 +23,6 @@ export default {
     <!-- 主要内容 -->
     <div class="root" id="root">
       <router-view />
-      <TabBar />
     </div>
     <!-- 覆层 -->
     <BilibiliDownLoad />

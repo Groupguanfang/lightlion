@@ -2,8 +2,9 @@
 import Swiper from "../components/Home/Swiper.vue";
 import AppGird from "../components/Home/AppGird.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
+import TabBar from "../components/TabBar.vue";
 export default {
-  components: { Swiper, AppGird, UserIcon },
+  components: { TabBar, Swiper, AppGird, UserIcon },
   data() {
     return {
       notice: true,
@@ -33,6 +34,7 @@ export default {
       content="腕上樱花即将合并到腕上B站"
     />
     <AppGird />
+    <TabBar />
   </div>
 </template>
 
