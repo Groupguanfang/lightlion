@@ -28,7 +28,9 @@ export default {
     <main class="padding">
       <img class="logo" src="../../assets/Icon/logo.png" alt="logo" />
       <t-input v-model="username" label="用户名" placeholder="请输入用户名,支持中英文"></t-input>
+      <t-input v-model="email" label="邮箱" placeholder="请输入电子邮箱地址"></t-input>
       <t-input v-model="password" label="密码" placeholder="请输入密码"></t-input>
+      <t-input v-model="retryPassword" label="确认密码" placeholder="请输入再次输入密码"></t-input>
       <t-button :loading="buttonLoading" style="margin-top: 10px" theme="primary" shape="circle" @click="action()" size="large">
       <ChevronRightIcon />
     </t-button>
