@@ -1,32 +1,21 @@
 <script>
-import { UserAddIcon } from "tdesign-icons-vue-next"
-import { loginAction } from "../../api/User";
+import { RegAction } from "../../api/User";
 export default {
-  components: { UserAddIcon },
   data() {
     return {
       username: "",
       password: "",
+      retryPassword: "",
+      email: "",
       buttonLoading: false
     }
   },
   methods: {
-    async loginActionTo() {
-      this.buttonLoading = true;
-      const action = await loginAction(this.username,this.password);
-      console.log(action.data);
-      
-      if (action.data.code !== 500) {
-        localStorage.setItem('token',action.data[0].token);
-        this.$router.push('/usercenter')
-      } else {
-        this.$toast(action.data.message)
-      }
-      
-      this.buttonLoading = false;
+    async action() {
+      const reg = await RegAction()
     }
   }
-};
+}
 </script>
 
 <template>
@@ -44,7 +33,7 @@ export default {
       <img class="logo" src="../../assets/Icon/logo.png" alt="logo" />
       <t-input v-model="username" label="用户名" placeholder="请输入用户名"></t-input>
       <t-input v-model="password" label="密码" placeholder="请输入密码"></t-input>
-      <t-button :loading="buttonLoading" block style="margin-top: 10px" theme="primary" @click="loginActionTo()">登录</t-button>
+      <t-button :loading="buttonLoading" block style="margin-top: 10px" theme="primary" @click="action()">登录</t-button>
     </main>
   </div>
 </template>
