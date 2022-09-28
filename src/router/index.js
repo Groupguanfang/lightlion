@@ -18,6 +18,10 @@ const routes = [
     path: "/post/:id",
     component: () => import("../pages/Post/PostItem.vue")
   },
+  {
+    path: "/register",
+    component: () => import("../pages/User/Register.vue")
+  },
 ];
 
 const router = createRouter({
