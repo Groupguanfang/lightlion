@@ -15,13 +15,14 @@ export default {
     }
   },
   methods: {
-    async checker() {      
+    async checker() {
+      this.buttonLoading = true
       if (this.password === this.retryPassword) {
         const name = await checkName(this.username)
         if (name.data.code === 200)
         {
           this.buttonDisabled = false
-          this.nameError = name.data.message
+          this.nameError = ""
         } else {
           this.buttonDisabled = true
           this.nameError = name.data.message
@@ -29,6 +30,7 @@ export default {
       } else {
         this.buttonDisabled = true
       }
+      this.buttonLoading = false
     },
     async action() {
       this.buttonLoading = true
@@ -62,18 +64,21 @@ export default {
       />
       <t-input
         v-model="email"
+        type="email"
         label="邮箱"
-        placeholder="请输入邮箱地址
+        placeholder="请输入邮箱地址"
       />
       <t-input
         v-model="password"
         label="密码"
+        type="password"
         placeholder="请输入密码"
         @change="checker()"
       />
       <t-input
         v-model="retryPassword"
         label="确认密码"
+        type="password"
         placeholder="请再次输入密码"
         @change="checker()"
       />
