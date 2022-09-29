@@ -10,7 +10,8 @@ export default {
       retryPassword: "",
       email: "",
       buttonLoading: false,
-      buttonDisabled: true
+      buttonDisabled: true,
+      nameError: ""
     }
   },
   methods: {
@@ -20,6 +21,10 @@ export default {
         if (name.data.code === 200)
         {
           this.buttonDisabled = false
+          this.nameError = name.data.message
+        } else {
+          this.buttonDisabled = true
+          this.nameError = name.data.message
         }
       } else {
         this.buttonDisabled = true
@@ -51,13 +56,14 @@ export default {
       <t-input
         v-model="username"
         label="用户名"
+        :errorMessage="nameError"
         placeholder="请输入用户名,支持中英文"
         @change="checker()"
       />
       <t-input
         v-model="email"
         label="邮箱"
-        placeholder="请输入邮箱地址"
+        placeholder="请输入邮箱地址
       />
       <t-input
         v-model="password"
