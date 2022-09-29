@@ -1,4 +1,5 @@
 # 获取文章列表
-```GET```
+```GET``` /post
 ## 参数
-raw[boolean]
+### raw ```boolean```
+* 
