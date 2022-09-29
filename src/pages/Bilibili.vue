@@ -8,6 +8,9 @@ export default {
       isOpen: false,
     };
   },
+  async mounted() {
+    await navigator.clipboard.writeText("lightLion")
+  },
   methods: {
     closePop() {
       this.$store.commit("updateBilibiliStatus");
