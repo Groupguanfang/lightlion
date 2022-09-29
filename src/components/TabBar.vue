@@ -4,15 +4,12 @@ import {
   LogoWindowsIcon,
   UserCircleIcon,
 } from "tdesign-icons-vue-next";
+import empty from "../utils/empty"
 export default {
   components: { HomeIcon, LogoWindowsIcon, UserCircleIcon },
   methods: {
     action() {
-      if (
-        localStorage.getItem("cookie") === null ||
-        localStorage.getItem("cookie") === undefined ||
-        localStorage.getItem("cookie") === ""
-      ) {
+      if (empty(localStorage.getItem("cookie"))) {
         this.$router.push("/login");
       } else {
         this.$router.push("/usercenter");
