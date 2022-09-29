@@ -1,4 +1,4 @@
-<script>
+$to<script>
 import { checkName, regAction } from "../../api/User";
 import { ChevronRightIcon } from "tdesign-icons-vue-next";
 export default {
@@ -34,14 +34,18 @@ export default {
     },
     async action() {
       this.buttonLoading = true
-      const reg = await regAction(his.username,this.password,this.email)
-      
-      if (reg.data.code !== 500) {
-        localStroage.setItem('cookie',reg)
-        this.buttonLoading = false
-      } else {
-        this.buttonLoading = false
-        this.$toast(reg.data.message)
+      try {
+        const reg = await regAction(this.username,this.password,this.email)
+        if (reg.data.code !== 500) {
+          localStroage.setItem('cookie',reg)
+          this.buttonLoading = false
+          this.toast('注册成功')
+        } else {
+          this.buttonLoading = false
+          this.$toast(reg.data.message)
+        }
+      } catch (error) {
+        this.$toast(error)
       }
     }
   }
