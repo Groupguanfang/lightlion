@@ -7,6 +7,9 @@
   -webkit-touch-callout: none;
   box-sizing: border-box;
 }
+body {
+  filter: invert(1)
+}
 body:not(.ready) {
   overflow: hidden;
 }
