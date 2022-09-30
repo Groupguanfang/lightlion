@@ -1,21 +1,22 @@
 <script>
-import { getInfo } from "../../api/User"
-import TabBar from "../../components/TabBar.vue"
+import { getInfo } from "../../api/User";
+import TabBar from "../../components/TabBar.vue";
 export default {
-  components: { TabBar }
+  components: { TabBar },
   data() {
     return {
-      userInfo: {}
-    }
+      userInfo: {},
+    };
   },
   async mounted() {
-    const info = await getInfo(localStorage.getItem('cookie'))
-    this.userInfo = info
-  }
-}
+    const info = await getInfo(localStorage.getItem("cookie"));
+    this.userInfo = info;
+  },
+};
 </script>
 
-z<template>
+z
+<template>
   <div class="usercenter">
     <t-navbar>用户中心</t-navbar>
     <TabBar />

@@ -1,1 +1,0 @@
-import{h as n}from"./axios.e5feba4c.js";async function e(t,a){return await n.get("/user/login",{params:{username:t,password:a}})}async function i(t,a,s){return await n.get("/user/register",{params:{username:t,password:a,email:s}})}const c="/assets/logo.226542b1.png";export{c as _,e as l,i as r};
