@@ -50,7 +50,7 @@ export async function regAction(username, password, email) {
  * @since 2022
  */
 export async function getInfo(cookie) {
-  return await axios.get("/user", { params: { cookie } });
+  return await axios.get("/user", { params: { cookie: cookie } });
 }
 
 /**

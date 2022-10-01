@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^0.21",
     "nativeshare": "^2.1.5",
     "tdesign-icons-vue-next": "^0.1.5",
     "tdesign-mobile-vue": "^0.11.0",
