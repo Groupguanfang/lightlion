@@ -5,7 +5,7 @@ specifiers:
   axios: ^0.27.2
   nativeshare: ^2.1.5
   tdesign-icons-vue-next: ^0.1.5
-  tdesign-mobile-vue: ^0.10.6
+  tdesign-mobile-vue: ^0.11.0
   vite: ^3.1.0
   vue: ^3.2.37
   vue-router: ^4.0.13
@@ -15,7 +15,7 @@ dependencies:
   axios: 0.27.2
   nativeshare: 2.1.5
   tdesign-icons-vue-next: 0.1.5_vue@3.2.39
-  tdesign-mobile-vue: 0.10.6_vue@3.2.39
+  tdesign-mobile-vue: 0.11.0_vue@3.2.39
   vue: registry.npmmirror.com/vue/3.2.39
   vue-router: registry.npmmirror.com/vue-router/4.0.13_vue@3.2.39
   vuex: 4.0.2_vue@3.2.39
@@ -369,8 +369,8 @@ packages:
       vue: registry.npmmirror.com/vue/3.2.39
     dev: false
 
-  /tdesign-mobile-vue/0.10.6_vue@3.2.39:
-    resolution: {integrity: sha512-LH/3GQ5scoi6R4NoKLtKGPZcelOSaWXX3dX0xKY/hQF5WeB1sYTO6a2T5O/dfa35JvteKgqhUbWgtS3K5C6ZdQ==}
+  /tdesign-mobile-vue/0.11.0_vue@3.2.39:
+    resolution: {integrity: sha512-XK5wbZkwKQTm8rTxHVlHUu7ms8BjfGx39TOP5cQdA2b79uAK/LLMAc0bxXHoP9nIJvjbxtS5czpjlZ6yv3zENQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vue: ^3.2.6

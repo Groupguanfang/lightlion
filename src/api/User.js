@@ -49,6 +49,19 @@ export async function regAction(username, password, email) {
  * @author Zero
  * @since 2022
  */
-export async function getInfo(token) {
-  return await axios.get("/user", { params: { cookie: token } });
+export async function getInfo(cookie) {
+  return await axios.get("/user", { params: { cookie } });
+}
+
+/**
+ * 登出
+ *
+ * @params [string] cookie
+ * @returns [object]
+ * @author Zero
+ * @since 2022
+ */
+
+export async function logOut(cookie) {
+  return await axios.get("/user/logout", { params: { cookie } });
 }
