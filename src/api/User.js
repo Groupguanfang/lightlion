@@ -9,8 +9,8 @@ import axios from "../utils/axios";
  * @auothr Zero
  * @since 2022
  */
-export async function loginAction(username,password) {
-  return await axios.get('/user/login',{ params:{ username,password } })
+export async function loginAction(username, password) {
+  return await axios.get("/user/login", { params: { username, password } });
 }
 
 /**
@@ -22,7 +22,7 @@ export async function loginAction(username,password) {
  * @since 2022
  */
 export async function checkName(username) {
-  return await axios.get('/user/checkname',{ params:{ username } })
+  return await axios.get("/user/checkname", { params: { username } });
 }
 
 /**
@@ -35,18 +35,20 @@ export async function checkName(username) {
  * @author Zero
  * @since 2022
  */
-export async function regAction(username,password,email) {
-  return await axios.get('/user/register', { params:{ username,password,email } })
+export async function regAction(username, password, email) {
+  return await axios.get("/user/register", {
+    params: { username, password, email },
+  });
 }
 
 /**
  * 登录用户信息
  *
- * @params [string] cookie 
+ * @params [string] cookie
  * @returns [object] 用户信息
  * @author Zero
  * @since 2022
  */
 export async function getInfo(token) {
-  return await ae:os.get('/u :r',{ param s { cookie:  token } })
+  return await axios.get("/user", { params: { cookie: token } });
 }
