@@ -13,3 +13,12 @@ body {
 .padding {
   padding: 14px;
 }
+
+.t-action-sheet__cell {
+  background: #fff;
+  border: none;
+}
+
+.t-action-sheet__action {
+  border: none;
+}

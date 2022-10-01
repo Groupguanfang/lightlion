@@ -52,3 +52,12 @@ export async function regAction(username, password, email) {
 export async function getInfo(token) {
   return await axios.get("/user", { params: { cookie: token } });
 }
+
+/**
+ * 登出
+ *
+ * @params [string] cookie
+ * @returns [object] 用户信息
+ * @author Zero
+ * @since 2022
+ */
