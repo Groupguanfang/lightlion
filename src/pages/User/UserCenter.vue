@@ -1,5 +1,5 @@
 <script>
-import { getInfo } from "../../api/User";
+import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
 import Panel from "../../components/User/Panel.vue";
@@ -37,9 +37,17 @@ export default {
     }
   },
   methods: {
-    handleSelected(selected, selectedIndex) {
+    async handleSelected(selected, selectedIndex) {
       if (selectedIndex === 0) {
-        this.$toast("已登出");
+        try {
+          const logoutAction = await logOut(localStorage.getItem("token"));
+          console.log(logoutAction);
+          this.$toast(logoutAction.data.message);
+          //localStorage.removeItem("token");
+        } catch (err) {
+          this.$toast(err);
+          return;
+        }
       }
     },
   },
