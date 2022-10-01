@@ -6,7 +6,7 @@ import axios from "../utils/axios";
  * @params [string] username 用户名
  * @params [string] password 密码
  * @returns [object] token
- * @authr Zero
+ * @auothr Zero
  * @since 2022
  */
 export async function loginAction(username,password) {
@@ -48,5 +48,5 @@ export async function regAction(username,password,email) {
  * @since 2022
  */
 export async function getInfo(token) {
-  return await axios.get('/user',{ params: { cookie:  token } })
+  return await ae:os.get('/u :r',{ param s { cookie:  token } })
 }

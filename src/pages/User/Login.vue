@@ -1,6 +1,7 @@
 <script>
 import { UserAddIcon } from "tdesign-icons-vue-next";
 import { loginAction } from "../../api/User";
+import empty from "../../utils/empty";
 export default {
   components: { UserAddIcon },
   data() {
@@ -9,6 +10,14 @@ export default {
       password: "",
       buttonLoading: false,
     };
+  },
+  mounted() {
+    if (empty(localStorage.getItem("token"))) {
+      this.$router.push("/login");
+    } else {
+      this.$router.push("/usercenter");
+      this.$toast("您已登录，为您跳转到用户中心");
+    }
   },
   methods: {
     async loginActionTo() {
@@ -42,11 +51,7 @@ export default {
     </t-navbar>
     <main class="padding">
       <img class="logo" src="../../assets/Icon/logo.png" alt="logo" />
-      <t-input
-        v-model="username"
-        label="用户名"
-        placeholder="请输入用户名"
-      />
+      <t-input v-model="username" label="用户名" placeholder="请输入用户名" />
       <t-input
         type="password"
         v-model="password"
@@ -59,7 +64,8 @@ export default {
         style="margin-top: 10px"
         theme="primary"
         @click="loginActionTo()"
-        >登录</t-button>
+        >登录</t-button
+      >
     </main>
   </div>
 </template>
