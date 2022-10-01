@@ -1,31 +1,40 @@
 <script>
-import { UserAddIcon } from "tdesign-icons-vue-next"
+import { UserAddIcon } from "tdesign-icons-vue-next";
 import { loginAction } from "../../api/User";
+import empty from "../../utils/empty";
 export default {
   components: { UserAddIcon },
   data() {
     return {
       username: "",
       password: "",
-      buttonLoading: false
+      buttonLoading: false,
+    };
+  },
+  mounted() {
+    if (empty(localStorage.getItem("token"))) {
+      this.$router.push("/login");
+    } else {
+      this.$router.push("/usercenter");
+      this.$toast("您已登录，为您跳转到用户中心");
     }
   },
   methods: {
     async loginActionTo() {
       this.buttonLoading = true;
-      const action = await loginAction(this.username,this.password);
+      const action = await loginAction(this.username, this.password);
       console.log(action.data);
-      
+
       if (action.data.code !== 500) {
-        localStorage.setItem('token',action.data[0].token);
-        this.$router.push('/usercenter')
+        localStorage.setItem("token", action.data[0].token);
+        this.$router.push("/usercenter");
       } else {
-        this.$toast(action.data.message)
+        this.$toast(action.data.message);
       }
-      
+
       this.buttonLoading = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -42,9 +51,21 @@ export default {
     </t-navbar>
     <main class="padding">
       <img class="logo" src="../../assets/Icon/logo.png" alt="logo" />
-      <t-input v-model="username" label="用户名" placeholder="请输入用户名"></t-input>
-      <t-input v-model="password" label="密码" placeholder="请输入密码"></t-input>
-      <t-button :loading="buttonLoading" block style="margin-top: 10px" theme="primary" @click="loginActionTo()">登录</t-button>
+      <t-input v-model="username" label="用户名" placeholder="请输入用户名" />
+      <t-input
+        type="password"
+        v-model="password"
+        label="密码"
+        placeholder="请输入密码"
+      />
+      <t-button
+        :loading="buttonLoading"
+        block
+        style="margin-top: 10px"
+        theme="primary"
+        @click="loginActionTo()"
+        >登录</t-button
+      >
     </main>
   </div>
 </template>

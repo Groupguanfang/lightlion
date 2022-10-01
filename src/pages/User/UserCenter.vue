@@ -9,8 +9,9 @@ export default {
     };
   },
   async mounted() {
-    const info = await getInfo(localStorage.getItem("cookie"));
+    const info = await getInfo(localStorage.getItem("token"));
     this.userInfo = info;
+    console.log(this.userInfo);
   },
 };
 </script>
