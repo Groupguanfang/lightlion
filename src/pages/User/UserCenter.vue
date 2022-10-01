@@ -1,5 +1,5 @@
 <script>
-import { getInfo } from "../../api/User";
+import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
 import Panel from "../../components/User/Panel.vue";
@@ -37,9 +37,18 @@ export default {
     }
   },
   methods: {
-    handleSelected(selected, selectedIndex) {
+    async handleSelected(selected, selectedIndex) {
       if (selectedIndex === 0) {
-        this.$toast("已登出");
+        try {
+          const logoutAction = await logOut(localStorage.getItem("token"));
+          console.log(logoutAction);
+          this.$toast(logoutAction.data.message);
+          localStorage.removeItem("token");
+          this.$router.push("/");
+        } catch (err) {
+          this.$toast(err);
+          return;
+        }
       }
     },
   },
@@ -48,7 +57,9 @@ export default {
 
 <template>
   <div class="usercenter">
-    <t-navbar @click-right="showActionSheet = true">用户中心</t-navbar>
+    <t-navbar :leftArrow="false" @click-right="showActionSheet = true">
+      用户中心
+    </t-navbar>
     <TabBar />
     <t-action-sheet
       @selected="handleSelected"

@@ -44,6 +44,13 @@ const routes = [
       title: "用户中心",
     },
   },
+  {
+    path: "/admin",
+    component: () => import("../pages/Admin/index.vue"),
+    meta: {
+      title: "超管中心",
+    },
+  },
 ];
 
 const router = createRouter({
