@@ -1,6 +1,7 @@
-$to<script>
-import { checkName, regAction } from "../../api/User";
+<script>
+import { checkName, regAction, sendEmail } from "../../api/User";
 import { ChevronRightIcon } from "tdesign-icons-vue-next";
+import empty from "../../utils/empty";
 export default {
   components: { ChevronRightIcon },
   data() {
@@ -11,52 +12,68 @@ export default {
       email: "",
       buttonLoading: false,
       buttonDisabled: true,
-      nameError: ""
-    }
+      nameError: "",
+      code: "",
+      sendCodeButton: false,
+      sendCodeButtonText: "发送验证码",
+    };
   },
   methods: {
     async checker() {
-      this.buttonLoading = true
+      this.buttonLoading = true;
       if (this.password === this.retryPassword) {
-        const name = await checkName(this.username)
-        if (name.data.code === 200)
-        {
-          this.buttonDisabled = false
-          this.nameError = ""
+        if (!empty(this.code)) {
+          const name = await checkName(this.username);
+          if (name.data.code === 200) {
+            this.buttonDisabled = false;
+            this.nameError = "";
+          } else {
+            this.buttonDisabled = true;
+            this.nameError = name.data.message;
+          }
         } else {
-          this.buttonDisabled = true
-          this.nameError = name.data.message
+          this.buttonDisabled = true;
         }
       } else {
-        this.buttonDisabled = true
+        this.buttonDisabled = true;
       }
-      this.buttonLoading = false
+      this.buttonLoading = false;
     },
     async action() {
-      this.buttonLoading = true
+      this.buttonLoading = true;
       try {
-        const reg = await regAction(this.username,this.password,this.email)
+        const reg = await regAction(this.username, this.password, this.email);
         if (reg.data.code !== 500) {
-          localStroage.setItem('cookie',reg)
-          this.buttonLoading = false
-          this.toast('注册成功')
+          localStroage.setItem("cookie", reg);
+          this.buttonLoading = false;
+          this.toast("注册成功");
         } else {
-          this.buttonLoading = false
-          this.$toast(reg.data.message)
+          this.buttonLoading = false;
+          this.$toast(reg.data.message);
         }
       } catch (error) {
-        this.$toast(error)
+        this.$toast(error);
       }
-    }
-  }
-}
+    },
+    async sendCode() {
+      this.sendCodeButton = true;
+      this.sendCodeButtonText = "正在发送";
+      try {
+        const requestEmail = await sendEmail(this.email);
+        this.sendCodeButtonText = "发送验证码";
+        this.$toast("验证码发送成功，若没收到请再发一次");
+        this.sendCodeButton = false;
+      } catch (err) {
+        this.$toast("出现错误");
+      }
+    },
+  },
+};
 </script>
 
 <template>
   <div class="register">
-    <t-navbar :rightShow="false">
-      注册
-    </t-navbar>
+    <t-navbar :rightShow="false"> 注册 </t-navbar>
     <main class="padding">
       <img class="logo" src="../../assets/Icon/logo.png" alt="logo" />
       <t-input
@@ -66,11 +83,22 @@ export default {
         placeholder="请输入用户名,支持中英文"
         @change="checker()"
       />
+      <t-input v-model="email" label="邮箱" placeholder="请输入邮箱地址">
+        <template #suffix>
+          <t-button
+            :disabled="sendCodeButton"
+            variant="text"
+            @click="sendCode()"
+          >
+            {{ sendCodeButtonText }}
+          </t-button>
+        </template>
+      </t-input>
       <t-input
-        v-model="email"
-        type="email"
-        label="邮箱"
-        placeholder="请输入邮箱地址"
+        v-model="code"
+        @change="checker()"
+        label="验证码"
+        placeholder="请输入验证码"
       />
       <t-input
         v-model="password"
@@ -95,8 +123,8 @@ export default {
         @click="action()"
         size="large"
       >
-      <ChevronRightIcon />
-    </t-button>
+        <ChevronRightIcon />
+      </t-button>
     </main>
   </div>
 </template>

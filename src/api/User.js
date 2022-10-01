@@ -65,3 +65,16 @@ export async function getInfo(cookie) {
 export async function logOut(cookie) {
   return await axios.get("/user/logout", { params: { cookie } });
 }
+
+/**
+ * 发送电子邮件验证码
+ *
+ * @params [string]
+ * @returns [object]
+ * @author Zero
+ * @since 2022
+ */
+
+export async function sendEmail(email) {
+  return await axios.get("/user/email", { params: { email } });
+}
