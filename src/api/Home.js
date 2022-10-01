@@ -21,3 +21,16 @@ export async function getPost() {
 export async function getPostItem(id) {
   return await axios.get("/singlepost", { params: { id } });
 }
+
+/**
+ * 获取公告
+ * 
+ * @params
+ * @returns
+ * @author Zero
+ * @since 2022
+ */
+
+export async function getAnnouncement() {
+  return await axios.get('/announcement')
+}

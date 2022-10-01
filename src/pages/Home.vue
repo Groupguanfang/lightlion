@@ -3,12 +3,18 @@ import Swiper from "../components/Home/Swiper.vue";
 import AppGird from "../components/Home/AppGird.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
 import TabBar from "../components/TabBar.vue";
+import { getAnnouncement } from "../api/Home";
 export default {
   components: { TabBar, Swiper, AppGird, UserIcon },
   data() {
     return {
       notice: true,
+      content: "正在获取最新公告...",
     };
+  },
+  async mounted() {
+    const announcement = await getAnnouncement();
+    this.content = announcement.data.data[0].value;
   },
 };
 </script>
@@ -28,11 +34,7 @@ export default {
       </template>
     </t-navbar>
     <Swiper />
-    <t-notice-bar
-      id="home-notice"
-      v-model="notice"
-      content="腕上樱花即将合并到腕上B站"
-    />
+    <t-notice-bar id="home-notice" v-model="notice" :content="content" />
     <AppGird />
     <TabBar />
   </div>
