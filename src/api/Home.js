@@ -8,6 +8,16 @@ import axios from "../utils/axios";
  * @since 2022
  */
 export async function getPost() {
-  let data = await axios.get("/post");
-  return data;
+  return await axios.get("/post");
+}
+
+/**
+ * 获取文章接口
+ *
+ * @returns [object] post list
+ * @author Zero
+ * @since 2022
+ */
+export async function getPostItem(id) {
+  return await axios.get("/singlepost", { params: { id } });
 }
