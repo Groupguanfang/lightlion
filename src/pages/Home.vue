@@ -4,6 +4,7 @@ import AppGird from "../components/Home/AppGird.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
 import TabBar from "../components/TabBar.vue";
 import { getAnnouncement } from "../api/Home";
+import empty from "../utils/empty";
 export default {
   components: { TabBar, Swiper, AppGird, UserIcon },
   data() {
@@ -16,6 +17,15 @@ export default {
     const announcement = await getAnnouncement();
     this.content = announcement.data.data[0].value;
   },
+  methods: {
+    action() {
+      if (empty(localStorage.getItem("token"))) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/usercenter");
+      }
+    },
+  },
 };
 </script>
 
@@ -26,7 +36,7 @@ export default {
         <h1>心电社区</h1>
       </template>
       <template #right>
-        <t-avatar size="small">
+        <t-avatar size="small" @click="action()">
           <template #icon>
             <UserIcon style="font-size: 16px" />
           </template>

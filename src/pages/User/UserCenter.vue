@@ -43,7 +43,8 @@ export default {
           const logoutAction = await logOut(localStorage.getItem("token"));
           console.log(logoutAction);
           this.$toast(logoutAction.data.message);
-          //localStorage.removeItem("token");
+          localStorage.removeItem("token");
+          this.$router.push("/");
         } catch (err) {
           this.$toast(err);
           return;
@@ -56,7 +57,9 @@ export default {
 
 <template>
   <div class="usercenter">
-    <t-navbar @click-right="showActionSheet = true">用户中心</t-navbar>
+    <t-navbar :leftArrow="false" @click-right="showActionSheet = true">
+      用户中心
+    </t-navbar>
     <TabBar />
     <t-action-sheet
       @selected="handleSelected"
