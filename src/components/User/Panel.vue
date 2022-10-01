@@ -22,6 +22,11 @@ export default {
         </div>
       </div>
     </div>
+
+    <t-tabs class="personal" default-value="post">
+      <t-tab-panel value="post" label="我的文章"> 没有文章 </t-tab-panel>
+      <t-tab-panel value="follow" label="我的关注"> 没有关注 </t-tab-panel>
+    </t-tabs>
   </div>
 </template>
 
@@ -34,6 +39,8 @@ export default {
   display: flex;
   justify-content: space-around;
   border-radius: 8px;
+  margin-left: 14px;
+  margin-right: 14px;
   background: #eee;
 }
 .data-container .item {
@@ -47,5 +54,11 @@ export default {
 }
 .data-container .item .data {
   font-size: 18px;
+}
+.personal .t-tabs__panel {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  color: #888;
 }
 </style>
