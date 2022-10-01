@@ -1,9 +1,10 @@
 <script>
 import { getPostItem } from "../../api/Home";
+import BottomBar from "../../components/Post/BottomBar.vue";
 import { WifiIcon, UserIcon } from "tdesign-icons-vue-next";
 import { h } from "vue";
 export default {
-  components: { WifiIcon, UserIcon },
+  components: { WifiIcon, UserIcon, BottomBar },
   data() {
     return {
       data: {},
@@ -57,6 +58,7 @@ export default {
   <div class="post-item">
     <t-navbar class="header hide" id="navbar">{{ data.title }}</t-navbar>
     <t-loading theme="bar" :progress="progress" />
+    <BottomBar />
     <div class="content padding">
       <div class="content-header">
         <h1 class="title">{{ data.title }}</h1>
@@ -67,7 +69,7 @@ export default {
             </template>
           </t-avatar>
           <div class="info">
-              {{ data.author }}
+            {{ data.author }}
           </div>
         </div>
       </div>
