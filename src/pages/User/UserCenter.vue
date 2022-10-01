@@ -34,7 +34,6 @@ export default {
 };
 </script>
 
-z
 <template>
   <div class="usercenter">
     <t-navbar @click-right="showActionSheet = true">用户中心</t-navbar>
