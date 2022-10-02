@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
-  //
   {
     path: "/",
     component: () => import("../pages/Home.vue"),
@@ -49,6 +48,13 @@ const routes = [
     component: () => import("../pages/Admin/index.vue"),
     meta: {
       title: "超管中心",
+    },
+  },
+  {
+    path: "/usercener/newdraft",
+    component: () => import("../pages/User/NewDraft.vue"),
+    meta: {
+      title: "新建草稿",
     },
   },
 ];

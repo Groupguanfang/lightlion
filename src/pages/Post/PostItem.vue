@@ -73,7 +73,7 @@ export default {
           </div>
         </div>
       </div>
-      {{ data.data }}
+      <main v-html="data.data"></main>
     </div>
   </div>
 </template>

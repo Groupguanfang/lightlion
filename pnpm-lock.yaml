@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@vitejs/plugin-vue': ^3.1.0
   axios: ^0.21
+  md-editor-v3: ^2.2.1
   nativeshare: ^2.1.5
   tdesign-icons-vue-next: ^0.1.5
   tdesign-mobile-vue: ^0.11.0
@@ -13,6 +14,7 @@ specifiers:
 
 dependencies:
   axios: 0.21.4
+  md-editor-v3: 2.2.1
   nativeshare: 2.1.5
   tdesign-icons-vue-next: 0.1.5_vue@3.2.39
   tdesign-mobile-vue: 0.11.0_vue@3.2.39
@@ -53,6 +55,10 @@ packages:
 
   /@types/lodash/4.14.185:
     resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
+    dev: false
+
+  /@types/marked/4.0.7:
+    resolution: {integrity: sha512-eEAhnz21CwvKVW+YvRvcTuFKNU9CV1qH+opcgVK3pIMI6YZzDm6gc8o2vHjldFk6MGKt5pueSB7IOpvpx5Qekw==}
     dev: false
 
   /@types/web-bluetooth/0.0.14:
@@ -312,6 +318,13 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
+
+  /md-editor-v3/2.2.1:
+    resolution: {integrity: sha512-nOd8mlEhvC99l9Y8pDMwEi6EdCAeBp88Ffl24We+2uz3/Iympctm92L1qyNicONJRhtZJacQ4oWTQGMYKGAxVg==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@types/marked': 4.0.7
     dev: false
 
   /nativeshare/2.1.5:

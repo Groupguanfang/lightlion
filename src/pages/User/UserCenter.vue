@@ -1,4 +1,4 @@
-<script>
+c<script>
 import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
@@ -29,9 +29,16 @@ export default {
   async created() {
     try {
       const info = await getInfo(localStorage.getItem("token"));
-      this.userInfo = info.data;
-      this.loading = false;
-      this.maincontent = true;
+      
+      if (info.code !== 500) {
+        this.userInfo = info.data;
+        this.loading = false;
+        this.maincontent = true;
+      } else {
+        this.$toast.fail('登录已过期，请重新登录')
+        this.$router.push('/')
+        localStorage.removeItem('token')
+      }
     } catch (err) {
       this.$toast(err);
     }
