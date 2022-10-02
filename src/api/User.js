@@ -35,9 +35,9 @@ export async function checkName(username) {
  * @author Zero
  * @since 2022
  */
-export async function regAction(username, password, email) {
+export async function regAction(username, password, email, code) {
   return await axios.get("/user/register", {
-    params: { username, password, email },
+    params: { username, password, email, code },
   });
 }
 
