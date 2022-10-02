@@ -42,7 +42,7 @@ export default {
     async action() {
       this.buttonLoading = true;
       try {
-        const reg = await regAction(this.username, this.password, this.email);
+        const reg = await regAction(this.username, this.password, this.email, this.code);
         if (reg.data.code !== 500) {
           localStroage.setItem("cookie", reg);
           this.buttonLoading = false;
