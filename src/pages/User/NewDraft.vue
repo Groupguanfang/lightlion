@@ -1,13 +1,14 @@
 <script>
-import MdEditor from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
 export default {
+  conponents: { MdEditor },
   data() {
     return {
-      text: ""
-    }
-  }
-}
+      text: "",
+    };
+  },
+};
 </script>
 
 <template>

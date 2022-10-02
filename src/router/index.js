@@ -51,7 +51,7 @@ const routes = [
     },
   },
   {
-    path: "/usercener/newdraft",
+    path: "/usercenter/newdraft",
     component: () => import("../pages/User/NewDraft.vue"),
     meta: {
       title: "新建草稿",
