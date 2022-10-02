@@ -1,10 +1,12 @@
+c
 <script>
 import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
 import Panel from "../../components/User/Panel.vue";
+import { AddIcon } from "tdesign-icons-vue-next";
 export default {
-  components: { TabBar, UserIcon, Panel },
+  components: { TabBar, UserIcon, Panel, AddIcon },
   data() {
     return {
       loading: true,
@@ -29,9 +31,16 @@ export default {
   async created() {
     try {
       const info = await getInfo(localStorage.getItem("token"));
-      this.userInfo = info.data;
-      this.loading = false;
-      this.maincontent = true;
+
+      if (info.code !== 500) {
+        this.userInfo = info.data;
+        this.loading = false;
+        this.maincontent = true;
+      } else {
+        this.$toast.fail("登录已过期，请重新登录");
+        this.$router.push("/");
+        localStorage.removeItem("token");
+      }
     } catch (err) {
       this.$toast(err);
     }
@@ -60,6 +69,15 @@ export default {
     <t-navbar :leftArrow="false" @click-right="showActionSheet = true">
       用户中心
     </t-navbar>
+    <t-fab
+      class="fab"
+      text="新建草稿"
+      @click="$router.push('/usercenter/newdraft')"
+    >
+      <template #icon>
+        <AddIcon />
+      </template>
+    </t-fab>
     <TabBar />
     <t-action-sheet
       @selected="handleSelected"
@@ -128,5 +146,9 @@ export default {
 .headerCard .right .tags {
   clear: both;
   width: 100%;
+}
+.usercenter .fab {
+  position: fixed;
+  transform: translateY(-40px);
 }
 </style>
