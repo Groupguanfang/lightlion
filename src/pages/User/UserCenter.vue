@@ -28,7 +28,7 @@ export default {
       ],
     };
   },
-  async created() {
+  async mounted() {
     try {
       const info = await getInfo(localStorage.getItem("token"));
 
@@ -59,7 +59,7 @@ export default {
           return;
         }
       } else if (selectedIndex === 1) {
-        this.$router.push('/usercenter/settings')
+        this.$router.push("/usercenter/settings");
       }
     },
   },

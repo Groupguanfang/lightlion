@@ -2,7 +2,7 @@
 import { UserAddIcon } from "tdesign-icons-vue-next";
 import { loginAction } from "../../api/User";
 import empty from "../../utils/empty";
-import LoginOptions from "../../components/User/LoginOptions.vue"
+import LoginOptions from "../../components/User/LoginOptions.vue";
 export default {
   components: { UserAddIcon, LoginOptions },
   data() {
@@ -68,7 +68,7 @@ export default {
       >
         登录
       </t-button>
-      <LoginOptions class="bottom"/>
+      <LoginOptions class="bottom" />
     </main>
   </div>
 </template>

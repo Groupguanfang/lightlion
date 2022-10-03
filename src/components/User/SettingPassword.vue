@@ -3,17 +3,17 @@ export default {
   data() {
     return {
       oldPassword: "",
-      newPassword: ""
-    }
+      newPassword: "",
+    };
   },
   methods: {
     action() {
       if (this.oldPassword === this.newPassword) {
-        this.$message.error('新密码不能与旧密码相同')
+        this.$message.error("新密码不能与旧密码相同");
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <template>
@@ -30,12 +30,6 @@ export default {
       label="新密码"
       placeholder="必填"
     />
-    <t-button
-      @click="action()"
-      block
-      theme="primary"
-    >
-     保存
-    </t-button>
+    <t-button @click="action()" block theme="primary"> 保存 </t-button>
   </div>
 </template>
