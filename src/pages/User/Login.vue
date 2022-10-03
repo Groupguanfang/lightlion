@@ -2,8 +2,9 @@
 import { UserAddIcon } from "tdesign-icons-vue-next";
 import { loginAction } from "../../api/User";
 import empty from "../../utils/empty";
+import LoginOptions from "../../components/User/LoginOptions.vue"
 export default {
-  components: { UserAddIcon },
+  components: { UserAddIcon, LoginOptions },
   data() {
     return {
       username: "",
@@ -64,8 +65,10 @@ export default {
         style="margin-top: 10px"
         theme="primary"
         @click="loginActionTo()"
-        >登录</t-button
       >
+        登录
+      </t-button>
+      <LoginOptions class="bottom"/>
     </main>
   </div>
 </template>
@@ -82,5 +85,8 @@ export default {
   height: 100%;
   margin-bottom: 20px;
   margin-top: 40px;
+}
+.bottom {
+  margin-top: 30px;
 }
 </style>

@@ -58,6 +58,8 @@ export default {
           this.$toast(err);
           return;
         }
+      } else if (selectedIndex === 1) {
+        this.$router.push('/usercenter/settings')
       }
     },
   },

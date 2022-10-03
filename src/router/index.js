@@ -5,7 +5,7 @@ const routes = [
     path: "/",
     component: () => import("../pages/Home.vue"),
     meta: {
-      title: "心电社区",
+      title: "首页",
     },
   },
   {
@@ -13,6 +13,13 @@ const routes = [
     component: () => import("../pages/User/Login.vue"),
     meta: {
       title: "登录",
+    },
+  },
+  {
+    path: "/forgot",
+    component: () => import("../pages/User/ForgotPassword.vue"),
+    meta: {
+      title: "找回密码",
     },
   },
   {
@@ -57,6 +64,13 @@ const routes = [
       title: "新建草稿",
     },
   },
+  {
+    path: "/usercenter/settings",
+    component: () => import("../pages/User/Settings.vue"),
+    meta: {
+      title: "设置",
+    },
+  },
 ];
 
 const router = createRouter({
@@ -66,7 +80,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
-    document.title = to.meta.title;
+    document.title = to.meta.title + " - 心电社区";
   }
   next();
 });
