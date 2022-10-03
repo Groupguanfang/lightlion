@@ -1,6 +1,6 @@
 <script>
-import MdEditor from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
 import empty from "../../utils/empty";
 
 export default {
@@ -8,24 +8,24 @@ export default {
   data() {
     return {
       text: "",
-      html: ""
-    }
+      html: "",
+    };
   },
   mounted() {
-    if (empty(localStorage.getItem('token'))) {
-      this.$router.push("/")
-      this.$toast("登录状态已失效，请重新登录")
+    if (empty(localStorage.getItem("token"))) {
+      this.$router.push("/");
+      this.$toast("登录状态已失效，请重新登录");
     }
   },
   methods: {
     getHtml(html) {
-      this.html = html
+      this.html = html;
     },
     saved(params) {
-      this.$toast(params)
-    }
-  }
-}
+      this.$toast(params);
+    },
+  },
+};
 </script>
 
 <template>
