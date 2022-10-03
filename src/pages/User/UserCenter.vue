@@ -28,7 +28,7 @@ export default {
       ],
     };
   },
-  async created() {
+  async mounted() {
     try {
       const info = await getInfo(localStorage.getItem("token"));
 
