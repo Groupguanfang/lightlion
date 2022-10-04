@@ -13,8 +13,10 @@ export default {
     <t-navbar :rightShow="false"> 设置 </t-navbar>
 
     <t-tabs default-value="password">
-      <t-tab-panel value="password" label="通用">
+      <t-tab-panel value="password" label="修改密码（开发中）">
         <SettingPassword />
+      </t-tab-panel>
+      <t-tab-panel value="mail" label="修改邮箱">
         <SettingEmail />
       </t-tab-panel>
       <t-tab-panel value="developer" label="开发者Debug"> </t-tab-panel>

@@ -92,7 +92,7 @@ export async function changePwd(newpass,cookie) {
   * 修改邮箱
   */
 export async function changeMail(cookie,email,code) {
-  return await axios.post('/userupdateemail',{
+  return await axios.post('/user/updateemail',{
     cookie,email,code
   })
 }
