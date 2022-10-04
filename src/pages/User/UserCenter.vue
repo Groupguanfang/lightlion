@@ -1,4 +1,3 @@
-c
 <script>
 import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";

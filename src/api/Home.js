@@ -24,13 +24,30 @@ export async function getPostItem(id) {
 
 /**
  * 获取公告
- * 
+ *
  * @params
+ * @returns [object]
+ * @author Zero
+ * @since 2022
+ */
+export async function getAnnouncement() {
+  return await axios.get("/announcement");
+}
+
+/**
+ * 发布草稿
+ *
+ * @params [title, data, comment, cookie, poster]
  * @returns
  * @author Zero
  * @since 2022
  */
-
-export async function getAnnouncement() {
-  return await axios.get('/announcement')
+export async function newDraft(title, data, comment, cookie, poster) {
+  return await axios.post("/createpost", {
+    title,
+    data,
+    comment,
+    cookie,
+    poster,
+  });
 }
