@@ -8,6 +8,7 @@ export default {
   },
   methods: {
     action() {
+      this.$toast("正在开发中")
       if (this.oldPassword === this.newPassword) {
         this.$message.error("新密码不能与旧密码相同");
       }

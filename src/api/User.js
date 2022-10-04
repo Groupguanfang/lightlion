@@ -78,3 +78,21 @@ export async function logOut(cookie) {
 export async function sendEmail(email) {
   return await axios.get("/user/email", { params: { email } });
 }
+
+/**
+  * 修改密码
+  */
+export async function changePwd(newpass,cookie) {
+  return axios.post('/user/updatepassword',{
+    newpass,cookie
+  })
+}
+
+/**
+  * 修改邮箱
+  */
+export async function changeMail(cookie,email,code) {
+  return await axios.post('/userupdateemail',{
+    cookie,email,code
+  })
+}

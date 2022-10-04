@@ -37,7 +37,7 @@ export async function getAnnouncement() {
 /**
  * 发布草稿
  *
- * @params [title, data, comment, cookie, poster]
+   * @params [title, data, comment, cookie, poster]
  * @returns
  * @author Zero
  * @since 2022
@@ -50,4 +50,8 @@ export async function newDraft(title, data, comment, cookie, poster) {
     cookie,
     poster,
   });
+}
+
+export async function forgotPwd() {
+  return axios.get('/user/forgot')
 }
