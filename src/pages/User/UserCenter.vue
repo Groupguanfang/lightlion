@@ -1,4 +1,3 @@
-c
 <script>
 import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";
@@ -28,7 +27,7 @@ export default {
       ],
     };
   },
-  async mounted() {
+  async created() {
     try {
       const info = await getInfo(localStorage.getItem("token"));
 

@@ -1,0 +1,49 @@
+<script>
+import { sendEmail, changeMail, getInfo } from "../../api/User";
+export default {
+  data() {
+    return {
+      newMail: "",
+      code: "",
+      buttonText: "发送验证码",
+      buttonDisabled: false
+    }
+  },
+  async mounted() {
+    const info = await getInfo(localStorage.getItem('token'))
+    
+  },
+  methods: {
+    async action() {
+      this.buttonDisabled = true
+      this.buttonText = "正在发送"
+      const data = await sendEmail(this.newMail)
+      this.buttonDisabled = false
+      this.$toast(data.data.message)
+      this.buttonText = "重新发送"
+    },
+    async variety() {
+      const nextData = await changeMail(localStorage.getItem('token'),this.newMail,this.code)
+      this.$toast(nextData.data.message)
+      if (nextData.data.code == 200)
+      {
+        this.$router.push('/usercenter')
+      }
+    }
+  }
+}
+</script>
+
+<template>
+  <div class="set-email padding">
+    <t-input v-model="newMail" label="新邮箱地址" placeholder="请输入新的电子邮件地址"/>
+    <t-input v-model="code" label="验证码" placeholder="请输入验证码">
+      <template #suffix>
+        <t-button @click="action()" :disabled="buttonDisabled" variant="text">
+          {{ buttonText }}
+        </t-button>
+      </template>
+    </t-input>
+    <t-button @click="variety()" block>保存</t-button>
+  </div>
+</template>
