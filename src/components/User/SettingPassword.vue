@@ -1,4 +1,4 @@
-<script>
+ <script>
 import empty from "../../utils/empty";
 import { changePwd } from "../../api/User";
 export default {
@@ -26,6 +26,9 @@ export default {
 
       const ckr = await changePwd(this.password, localStorage.getItem("token"));
       this.$toast(ckr.data.message)
+      if (ckr.data.code=== 200) {
+        this.$router.push('/usercenter')
+      }
     },
   },
 };
