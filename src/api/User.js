@@ -84,7 +84,9 @@ export async function sendEmail(email) {
   */
 export async function changePwd(newpass,cookie) {
   return axios.post('/user/updatepassword',{
-    newpass,cookie
+    params: {
+      newpass,cookie
+    }
   })
 }
 
