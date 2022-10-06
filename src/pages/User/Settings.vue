@@ -10,10 +10,12 @@ export default {
 
 <template>
   <div class="settings">
-    <t-navbar :rightShow="false"> 设置 </t-navbar>
+    <t-navbar :rightShow="false">
+      设置
+    </t-navbar>
 
     <t-tabs default-value="password">
-      <t-tab-panel value="password" label="修改密码（开发中）">
+      <t-tab-panel value="password" label="修改密码">
         <SettingPassword />
       </t-tab-panel>
       <t-tab-panel value="mail" label="修改邮箱">
