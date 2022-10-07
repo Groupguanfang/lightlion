@@ -3,6 +3,7 @@ import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import empty from "../../utils/empty";
 import { newDraft } from "../../api/Home";
+import http from "axios";
 
 export default {
   components: { MdEditor },
@@ -24,20 +25,40 @@ export default {
     getHtml(html) {
       this.html = html;
     },
-    async saved() {
-     try {
-        const update = await newDraft(this.title,this.html,'open',localStorage.getItem('token'),'',this.id);
-        console.log(update)
-        this.$toast(update.data.message)
-        if (update.data.code === 201)
+    async upload(files, callback) {
+      const form = new FormData();
+      form.append("avatar", files[0]);
+      form.append("cookie", localStorage.getItem("token"));
+
+      const uploadimg = await http.post(
+        import.meta.env.VITE_APP_API_URL + "/singleUpload",
+        form,
         {
-          this.id = update.data.data.insertId
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-        
+      );
+      console.log(uploadimg);
+    },
+    async saved() {
+      try {
+        const update = await newDraft(
+          this.title,
+          this.html,
+          "open",
+          localStorage.getItem("token"),
+          "",
+          this.id
+        );
+        console.log(update);
+        this.$toast(update.data.message);
+        if (update.data.code === 201) {
+          this.id = update.data.data.insertId;
+        }
       } catch (error) {
-        this.$toast(error)
+        this.$toast(error);
       }
-      
     },
   },
 };
@@ -53,6 +74,7 @@ export default {
       :toolbars="toolbars"
       @on-Html-changed="getHtml"
       @on-save="saved"
+      @onUploadImg="upload"
     />
   </div>
 </template>
