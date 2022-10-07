@@ -1,6 +1,9 @@
 <script>
+import Post from "./PanelItem/Post.vue"
+import Follow from "./PanelItem/Follow.vue"
 export default {
   props: ["follow", "fans", "money"],
+  components: { Post, Follow }
 };
 </script>
 
@@ -24,8 +27,8 @@ export default {
     </div>
 
     <t-tabs class="personal" default-value="post">
-      <t-tab-panel value="post" label="我的文章"> 没有文章 </t-tab-panel>
-      <t-tab-panel value="follow" label="我的关注"> 没有关注 </t-tab-panel>
+      <t-tab-panel value="post" label="我的文章"><Post /></t-tab-panel>
+      <t-tab-panel value="follow" label="我的关注"><Follow /></t-tab-panel>
     </t-tabs>
   </div>
 </template>

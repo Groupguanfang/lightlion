@@ -11,8 +11,7 @@ export default {
       loading: true,
       maincontent: false,
       userInfo: {
-        userdata: { id: "", name: "", avatar: "", saying: "" },
-        profile: { id: "", level: "", today: "", phone: "" },
+      userdata: { id: "", name: "", avatar: "", saying: "" },                                
       },
       showActionSheet: false,
       items: [
