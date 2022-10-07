@@ -1,5 +1,5 @@
 import axios from "../utils/axios";
-
+import http from "axios"
 /**
  * 获取文章接口
  *
@@ -37,19 +37,17 @@ export async function getAnnouncement() {
 /**
  * 发布草稿
  *
-   * @params [title, data, comment, cookie, poster]
+ * @params [title, data, comment, cookie, poster]
  * @returns
  * @author Zero
  * @since 2022
  */
-export async function newDraft(title, data, comment, cookie, poster) {
-  return await axios.post("/createpost", {
-    title,
-    data,
-    comment,
-    cookie,
-    poster,
-  });
+export async function newDraft(title, data, comment, cookie, poster, id) {
+  return await http({
+    method: "post",
+    url: import.meta.env.VITE_APP_API_URL+"/postcreate",
+    data: {title,data,comment,cookie,poster,id}
+  })
 }
 
 export async function forgotPwd() {
