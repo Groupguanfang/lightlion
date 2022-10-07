@@ -100,3 +100,14 @@ export async function changeMail(cookie,email,code) {
     }
   })
 }
+
+/**
+  * 获取文章
+  */
+export async function getUserPost(cookie) {
+  return await axios.get('user/post',{
+    params: {
+      cookie
+    }
+  })
+}
