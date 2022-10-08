@@ -30,16 +30,14 @@ export default {
       form.append("avatar", files[0]);
       form.append("cookie", localStorage.getItem("token"));
 
-      const uploadimg = await http.post(
-        import.meta.env.VITE_APP_API_URL + "/singleUpload",
-        form,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
+      const uploadimg = await http.post(import.meta.env.VITE_APP_API_URL + "/singleUpload", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log(uploadimg);
+    this.$toast(uploadimg.data.message)
+    callback(uploadimg.data.data)
     },
     async saved() {
       try {
