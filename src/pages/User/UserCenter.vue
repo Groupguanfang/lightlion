@@ -23,6 +23,9 @@ export default {
           label: "设置",
           icon: import.meta.env.VITE_APP_API_URL + "/static/setting.svg",
         },
+        {
+          label: "媒体",
+        }
       ],
     };
   },
@@ -58,6 +61,8 @@ export default {
         }
       } else if (selectedIndex === 1) {
         this.$router.push("/usercenter/settings");
+      } else if (selectedIndex === 2) {
+        this.$router.push("/usercenter/media")
       }
     },
   },
