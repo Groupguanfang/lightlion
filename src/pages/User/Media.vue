@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import { getMedia } from "../../api/User"
 
 export default {
   data() {
@@ -14,17 +14,9 @@ export default {
       this.showViewer = true
     }
   },
-  created() {
-    axios({
-    baseURL:import.meta.env.VITE_APP_API_URL,
-    url: "/user/media",
-    method: "get",
-    params: {
-      cookie: localStorage.getItem('token')
-    }
-    }).then(() => {
-      this.data = arr.data.data
-    })
+  async created() {
+    const data = await getMedia(localStorage.getItem('token'))
+    this.data = data.data.data
   },
 }
 </script>
@@ -33,8 +25,7 @@ export default {
   <div class="media">
     <t-navbar>媒体库</t-navbar>
     <div v-for="(item,index) in data" :key="index" style="width: 72px;height: 72px">
-    <t-image class="image-container" @click="show" :src="item.url">
-    </t-image>
+    <img class="image-container" @click="show" :src="item.url"/>
     </div>
   </div>
 </template>

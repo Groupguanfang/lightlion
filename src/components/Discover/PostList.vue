@@ -1,4 +1,4 @@
-/<script>
+<script>
 import axios from "../../utils/axios";
 import { getPost } from "../../api/Home";
 export default {

@@ -4,8 +4,9 @@ import "md-editor-v3/lib/style.css";
 import empty from "../../utils/empty";
 import { newDraft } from "../../api/Home";
 import http from "axios";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: { MdEditor },
   data() {
     return {
@@ -13,6 +14,36 @@ export default {
       html: "",
       id: "",
       title: "",
+      tool: [
+        'bold',
+        'underline',
+        'italic',
+        'image',
+        'save',
+        '-',
+        'strikeThrough',
+        'title',
+        'sub',
+        'sup',
+        'quote',
+        'unorderedList',
+        'orderedList',
+        '-',
+        'codeRow',
+        'code',
+        'link',
+        'table',
+        'mermaid',
+        '-',
+        'revoke',
+        'next',
+        '=',
+        'pageFullscreen',
+        'fullscreen',
+        'preview',
+        'htmlPreview',
+        'catalog',
+      ]
     };
   },
   mounted() {
@@ -22,9 +53,11 @@ export default {
     }
   },
   methods: {
+    // 获取html
     getHtml(html) {
       this.html = html;
     },
+    //上图片
     async upload(files, callback) {
       const form = new FormData();
       form.append("avatar", files[0]);
@@ -39,6 +72,7 @@ export default {
     this.$toast(uploadimg.data.message)
     callback(uploadimg.data.data)
     },
+    // 保存内容
     async saved() {
       try {
         const update = await newDraft(
@@ -59,7 +93,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <template>
@@ -67,12 +101,16 @@ export default {
     <t-navbar>新建草稿</t-navbar>
     <t-input v-model="title" placeholder="请输入文章标题" />
     <md-editor
+      :toolbars="tool"
       v-model="text"
       :noKatex="true"
-      :toolbars="toolbars"
       @on-Html-changed="getHtml"
       @on-save="saved"
       @onUploadImg="upload"
     />
   </div>
 </template>
+
+<style>
+
+</style>

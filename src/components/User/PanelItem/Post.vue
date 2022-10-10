@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       loading: 'loading',
-      data: []
+      data: [],
     }
   },
   async mounted() {
@@ -12,17 +12,38 @@ export default {
     this.data = item.data.data
     this.loading = ''
   },
+  methods: {
+    
+  }
 }
 </script>
 
 <template>
-  <t-list :asyncLoading="loading">
-    <t-cell v-for="(item,index) in data" :key="index" :title="item.title">
+  <t-list class="post-list padding" :asyncLoading="loading">
+  <t-swipe-cell style="border-radius: 6px" v-for="(item,index) in data" :key="index">
+    <t-cell :title="item.title" :description="item.data">
       <template #rightIcon>
         <t-tag theme="success" v-if="item.status === 'publish'">已发布</t-tag>
         <t-tag theme="warning" v-else-if="item.status === 'draft'">草稿</t-tag>
         <t-tag theme="primary" v-else="item.status === 'check'">审核中</t-tag>
       </template>
     </t-cell>
+    <template #right>
+      <t-button style="border-top-right-radius: 6px;border-bottom-right-radius:6px" theme="danger" shape="square">删除</t-button>
+    </template>
+  </t-swipe-cell>
   </t-list>
 </template>
+
+<style>
+.post-list {
+  width: 100%;
+}
+.post-list .t-cell__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+</style>

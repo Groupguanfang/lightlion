@@ -25,6 +25,7 @@ export default {
         },
         {
           label: "媒体",
+          icon: import.meta.env.VITE_APP_API_URL + "/static/media.svg"
         }
       ],
     };
