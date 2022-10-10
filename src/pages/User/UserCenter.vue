@@ -6,8 +6,19 @@ import Panel from "../../components/User/Panel.vue";
 import { AddIcon } from "tdesign-icons-vue-next";
 export default {
   components: { TabBar, UserIcon, Panel, AddIcon },
+  watch: {
+    '$store.state.usercenter.dialog'() {
+      if (this.$store.state.usercenter.dialog)
+      {
+        this.showDialog = true
+      } else {
+        this.showDialog = false
+      }
+    }
+  },
   data() {
     return {
+      showDialog: false,
       loading: true,
       maincontent: false,
       userInfo: {
@@ -66,6 +77,9 @@ export default {
         this.$router.push("/usercenter/media")
       }
     },
+    confirm() {
+      this.$store.commit('UserDeleteId')
+    }
   },
 };
 </script>
@@ -75,6 +89,12 @@ export default {
     <t-navbar :leftArrow="false" @click-right="showActionSheet = true">
       用户中心
     </t-navbar>
+    <t-dialog
+      v-model:visible="showDialog"
+      title="确认删除？"
+      cancelBtn="取消"
+      confirmBtn="删除"
+    ></t-dialog>
     <t-fab
       class="fab"
       text="新建草稿"
@@ -155,6 +175,7 @@ export default {
 }
 .usercenter .fab {
   position: fixed;
+  z-index: 99999;
   transform: translateY(-40px);
 }
 </style>
