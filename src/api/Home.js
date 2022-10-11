@@ -53,7 +53,7 @@ export async function newDraft(title, data, comment, cookie, poster, id) {
 export async function dropPost(id,cookie) {
   return await axios({
     method: "get",
-    ul: "/postdelete",
+    url: "/postdelete",
     params: {
       cookie,id
     }

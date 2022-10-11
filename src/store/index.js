@@ -7,7 +7,7 @@ export default createStore({
     },
     isLogin: false,
     userCenter: {
-      dialog: true,
+      dialog: false,
       id: null,
       preID: null
     }

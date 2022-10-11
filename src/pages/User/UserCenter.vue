@@ -1,14 +1,14 @@
 <script>
 import { getInfo, logOut } from "../../api/User";
 import TabBar from "../../components/TabBar.vue";
-import { UserIcon } from "tdesign-icons-vue-next";
+import { UserIcon, AddIcon } from "tdesign-icons-vue-next";
 import Panel from "../../components/User/Panel.vue";
-import { AddIcon } from "tdesign-icons-vue-next";
 export default {
   components: { TabBar, UserIcon, Panel, AddIcon },
   watch: {
-    '$store.state.usercenter.dialog'() {
-      if (this.$store.state.usercenter.dialog)
+    '$store.state.userCenter.dialog'() {
+      console.log(this.showDialog)
+      if (this.$store.state.userCenter.dialog)
       {
         this.showDialog = true
       } else {
@@ -79,6 +79,9 @@ export default {
     },
     confirm() {
       this.$store.commit('UserDeleteId')
+    },
+    close() {
+      this.$store.commit('UserDeleteDialog',null)
     }
   },
 };
@@ -94,6 +97,8 @@ export default {
       title="确认删除？"
       cancelBtn="取消"
       confirmBtn="删除"
+      @confirm="confirm()"
+      @close="close()"
     ></t-dialog>
     <t-fab
       class="fab"
