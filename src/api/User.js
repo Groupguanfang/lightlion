@@ -111,3 +111,16 @@ export async function getUserPost(cookie) {
     }
   })
 }
+
+/**
+  * 获取用户媒体库
+  */
+export async function getMedia(cookie) {
+  return await axios({
+    url: "/user/media",
+    method: "get",
+    params: {
+      cookie
+    }
+  })
+}

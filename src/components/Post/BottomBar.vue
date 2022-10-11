@@ -1,8 +1,13 @@
 <script>
 import { ChevronLeftIcon } from "tdesign-icons-vue-next";
 export default {
-  components: { ChevronLeftIcon },
+  components: { ChevronLeftIcon }, ata() {
+    return {
+      
+    }
+  }
 };
+
 </script>
 
 <template>

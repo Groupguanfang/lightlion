@@ -71,6 +71,13 @@ const routes = [
       title: "设置",
     },
   },
+  {
+    path: "/usercenter/media",
+    component: () => import("../pages/User/Media.vue"),
+    meta: {
+      title: "媒体库",
+    },
+  },
 ];
 
 const router = createRouter({

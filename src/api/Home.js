@@ -50,6 +50,16 @@ export async function newDraft(title, data, comment, cookie, poster, id) {
   })
 }
 
+export async function dropPost(id,cookie) {
+  return await axios({
+    method: "get",
+    url: "/postdelete",
+    params: {
+      cookie,id
+    }
+  })
+}
+
 export async function forgotPwd() {
   return axios.get('/user/forgot')
 }
