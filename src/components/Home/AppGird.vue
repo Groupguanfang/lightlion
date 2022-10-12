@@ -3,9 +3,16 @@ export default {
   methods: {
     openBilibili(action) {
       this.$store.commit(action);
-    }
-  }
-}
+    },
+  },
+  data() {
+    return {
+      bili: import.meta.env.VITE_APP_API_URL + "/static/bili.png",
+      news: import.meta.env.VITE_APP_API_URL + "/static/news.png",
+      books: import.meta.env.VITE_APP_API_URL + "/static/books.png",
+    };
+  },
+};
 </script>
 
 <template>
@@ -14,17 +21,17 @@ export default {
       <t-grid-item
         text="腕上B站"
         @click="openBilibili('updateBilibiliStatus')"
-        image="https://td.xhhzs.cn/wp-content/uploads/2022/09/1664019066-PNG图像.png"
+        :image="bili"
         description="For Apple Watch"
       />
       <t-grid-item
         text="腕上资讯"
-        image="https://td.xhhzs.cn/wp-content/uploads/2022/09/1664019065-PNG图像-3.png"
+        :image="news"
         description="For Apple Watch"
       />
       <t-grid-item
         text="腕上小说"
-        image="https://td.xhhzs.cn/wp-content/uploads/2022/09/1664019067-PNG图像-2.png"
+        :image="books"
         description="For Apple Watch"
       />
     </t-grid>

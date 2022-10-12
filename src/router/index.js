@@ -52,7 +52,7 @@ const routes = [
   },
   {
     path: "/admin",
-    component: () => import("../pages/Admin/index.vue"),
+    component: () => import("../Admin/index.vue"),
     meta: {
       title: "超管中心",
     },

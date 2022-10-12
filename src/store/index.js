@@ -4,6 +4,7 @@ export default createStore({
   state: {
     downLoadPage: {
       isBilibiliOpen: false,
+      isNewsOpen: false,
     },
     isLogin: false,
     userCenter: {
