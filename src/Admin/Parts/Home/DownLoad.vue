@@ -24,5 +24,6 @@ export default {
 <template>
   <div class="setting-item">
     <t-input v-model="value" label="下载地址" />
+    <t-button block theme="primary">保存</t-button>
   </div>
 </template>

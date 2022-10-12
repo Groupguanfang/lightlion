@@ -17,8 +17,5 @@ export default {
         class="padding"
       />
     </t-tab-panel>
-    <t-tab-panel value="about" label="关于">
-      <div class="about padding">前端：Zero<br>后端：Zero<br>Copyright Since 2022</div>
-    </t-tab-panel>
   </t-tabs>
 </template>

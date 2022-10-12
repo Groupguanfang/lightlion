@@ -1,8 +1,10 @@
 import axios from "../utils/axios";
 const cookie = localStorage.getItem('token')
+const base = import.meta.env.VITE_APP_API_URL
+import http from "axios"
 
 export async function changeAnnouncement(data) {
-    return await axios.post('/announcement', {
+    return await http.post(base + '/announcement', {
     data: data,
     cookie
   })

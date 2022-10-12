@@ -1,8 +1,9 @@
 <script>
 import { getInfo } from "../api/User";
 import Home from "./Parts/Home.vue";
+import About from "./Parts/About.vue";
 export default {
-  components: { Home },
+  components: { Home, About },
   async mounted() {
     const control = await getInfo(localStorage.getItem("token"));
     if (control.data.userdata.level != 10) {
@@ -20,6 +21,10 @@ export default {
       <t-tab-panel value="general" label="通用">
         <Home />
       </t-tab-panel>
+      <t-tab-panel value="about" label="关于">
+        <About />
+      </t-tab-panel>
+        
     </t-tabs>
   </div>
 </template>
