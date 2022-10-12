@@ -1,6 +1,8 @@
 <script>
 import NativeShare from "nativeshare";
 import { ShareIcon } from "tdesign-icons-vue-next";
+import { openBili, copyToClip } from "../utils/copy";
+
 export default {
   components: { ShareIcon },
   data() {
@@ -8,12 +10,15 @@ export default {
       isOpen: false,
     };
   },
-  async mounted() {
-    await navigator.clipboard.writeText("lightLion")
-  },
   methods: {
     closePop() {
       this.$store.commit("updateBilibiliStatus");
+    },
+    copyAction() {
+      copyToClip(() => {
+        alert("口令复制成功 点击关闭按钮调转到App Store")
+      })
+      openBili()
     },
     shareAction() {
       let nativeShare = new NativeShare();
@@ -64,9 +69,9 @@ export default {
             </div>
             <div class="bottom">
               <a
-                href="https://apps.apple.com/cn/app/腕上资讯/id1632611843"
                 target="_blank"
                 class="link"
+                @click="copyAction"
               >
                 <t-button size="small" theme="primary" shape="round">
                   下载
