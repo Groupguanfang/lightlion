@@ -7,7 +7,7 @@ export default {
   async mounted() {
     const control = await getInfo(localStorage.getItem("token"));
     if (control.data.userdata.level != 10) {
-      this.$router.push('/');
+      this.$router.push("/");
       this.$toast("您无权访问该页面");
     }
   },
@@ -24,7 +24,6 @@ export default {
       <t-tab-panel value="about" label="关于">
         <About />
       </t-tab-panel>
-        
     </t-tabs>
   </div>
 </template>
