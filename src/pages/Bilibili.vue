@@ -22,7 +22,7 @@ export default {
     },
     copyAction() {
       copyToClip(() => {
-        alert("口令复制成功 点击关闭按钮调转到App Store");
+        alert("口令复制成功 点击按钮调转到App Store");
       });
       openBili(this.address);
     },
@@ -96,12 +96,12 @@ export default {
             <t-step
               status="process"
               title="第二步"
-              content="复制口令“LightningLion”，打开刚下载的app后，点击按钮付款"
+              content="复制口令“LightningLion”，打开刚下载的app后，按照提示安装软件"
             />
             <t-step
               status="process"
               title="第三步"
-              content="在手表上找到腕上B站图标，开始使用"
+              content="在手表上找到「腕上RSS」图标，开始使用"
             />
           </t-steps>
         </div>

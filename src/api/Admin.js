@@ -26,3 +26,11 @@ export async function changeVal(meta, value) {
     cookie,
   });
 }
+
+export async function getChecker() {
+  return await axios.get('/admin/postcheck',{
+    params: {
+      cookie
+    }
+  })
+}
