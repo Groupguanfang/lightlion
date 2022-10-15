@@ -10,16 +10,19 @@ export default defineComponent({
   components: { MdEditor },
   data() {
     return {
+      saveButtonDisabled: false,
       text: "",
       html: "",
       id: "",
       title: "",
       tool: [
+        "revoke",
+        "next",
+        "-",
         "bold",
         "underline",
         "italic",
         "image",
-        "save",
         "-",
         "strikeThrough",
         "title",
@@ -33,10 +36,6 @@ export default defineComponent({
         "code",
         "link",
         "table",
-        "mermaid",
-        "-",
-        "revoke",
-        "next",
         "=",
         "pageFullscreen",
         "fullscreen",
@@ -52,11 +51,26 @@ export default defineComponent({
       this.$toast("登录状态已失效，请重新登录");
     }
 
+    // 修复移动端无法点击上传按钮的问题
     document
       .querySelector(".md-toolbar-item[title='图片']")
       .addEventListener("click", () => {
         document
           .querySelector(".md-dropdown")
+          .classList.remove("md-dropdown-hidden");
+      });
+    document
+      .querySelector(".md-toolbar-item[title='标题']")
+      .addEventListener("click", () => {
+        document
+          .querySelector(".md-dropdown")[1]
+          .classList.remove("md-dropdown-hidden");
+      });
+    document
+      .querySelector(".md-toolbar-item[title='表格']")
+      .addEventListener("click", () => {
+        document
+          .querySelector(".md-dropdown")[2]
           .classList.remove("md-dropdown-hidden");
       });
   },
@@ -85,6 +99,7 @@ export default defineComponent({
     },
     // 保存内容
     async saved() {
+      this.saveButtonDisabled = true;
       try {
         const update = await newDraft(
           this.title,
@@ -102,6 +117,7 @@ export default defineComponent({
       } catch (error) {
         this.$toast(error);
       }
+      this.saveButtonDisabled = false;
     },
   },
 });
@@ -116,9 +132,19 @@ export default defineComponent({
       v-model="text"
       :noKatex="true"
       @on-Html-changed="getHtml"
-      @on-save="saved"
       @onUploadImg="upload"
     />
+    <div class="options padding">
+      <t-button
+        :disabled="saveButtonDisabled"
+        :loading="saveButtonDisabled"
+        block
+        theme="primary"
+        @click="saved()"
+      >
+        保存为草稿
+      </t-button>
+    </div>
   </div>
 </template>
 

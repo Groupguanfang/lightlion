@@ -1,15 +1,17 @@
 <script>
 import { getUserPost } from "../../../api/User";
 import { dropPost } from "../../../api/Home";
+
 export default {
   data() {
     return {
       loading: "loading",
       data: [],
+      showEmpty: false,
     };
   },
   async mounted() {
-    const item = await getUserPost(localStorage.getItem("token"));
+    let item = await getUserPost(localStorage.getItem("token"));
     this.data = item.data.data;
     this.loading = "";
   },
@@ -27,7 +29,11 @@ export default {
       );
       this.$toast(del.data.message);
 
-      const item = await getUserPost(localStorage.getItem("token"));
+      let item = await getUserPost(localStorage.getItem("token"));
+      // 判断是否为空
+      if (item.data.data.length === 0) {
+        this.showEmpty = true;
+      }
       this.data = item.data.data;
       this.loading = "";
     },
@@ -37,13 +43,13 @@ export default {
 
 <template>
   <t-list class="post-list padding" :asyncLoading="loading">
-    <div align="center" v-if="data.length === 0">暂无文章</div>
+    <div align="center" v-if="showEmpty">暂无文章</div>
     <t-swipe-cell
       style="border-radius: 6px"
       v-for="(item, index) in data"
       :key="index"
     >
-      <t-cell :title="item.title" :description="item.data">
+      <t-cell :title="item.title" :description="item.description">
         <template #rightIcon>
           <t-tag theme="success" v-if="item.status === 'publish'">已发布</t-tag>
           <t-tag theme="warning" v-else-if="item.status === 'draft'">
@@ -58,8 +64,9 @@ export default {
           style="border-top-right-radius: 6px;border-bottom-right-radius:6px"
           theme="danger"
           shape="square"
-          >删除</t-button
         >
+          删除
+        </t-button>
       </template>
     </t-swipe-cell>
   </t-list>
