@@ -1,10 +1,10 @@
 <script>
-import MdEditor from "md-editor-v3";
-import "md-editor-v3/lib/style.css";
-import empty from "../../utils/empty";
-import { newDraft } from "../../api/Home";
 import http from "axios";
+import MdEditor from "md-editor-v3";
 import { defineComponent } from "vue";
+import { newDraft } from "../../api/Home";
+import empty from "../../utils/empty";
+import "md-editor-v3/lib/style.css";
 
 export default defineComponent({
   components: { MdEditor },
@@ -15,35 +15,35 @@ export default defineComponent({
       id: "",
       title: "",
       tool: [
-        'bold',
-        'underline',
-        'italic',
-        'image',
-        'save',
-        '-',
-        'strikeThrough',
-        'title',
-        'sub',
-        'sup',
-        'quote',
-        'unorderedList',
-        'orderedList',
-        '-',
-        'codeRow',
-        'code',
-        'link',
-        'table',
-        'mermaid',
-        '-',
-        'revoke',
-        'next',
-        '=',
-        'pageFullscreen',
-        'fullscreen',
-        'preview',
-        'htmlPreview',
-        'catalog',
-      ]
+        "bold",
+        "underline",
+        "italic",
+        "image",
+        "save",
+        "-",
+        "strikeThrough",
+        "title",
+        "sub",
+        "sup",
+        "quote",
+        "unorderedList",
+        "orderedList",
+        "-",
+        "codeRow",
+        "code",
+        "link",
+        "table",
+        "mermaid",
+        "-",
+        "revoke",
+        "next",
+        "=",
+        "pageFullscreen",
+        "fullscreen",
+        "preview",
+        "htmlPreview",
+        "catalog",
+      ],
     };
   },
   mounted() {
@@ -51,6 +51,14 @@ export default defineComponent({
       this.$router.push("/");
       this.$toast("登录状态已失效，请重新登录");
     }
+
+    document
+      .querySelector(".md-toolbar-item[title='图片']")
+      .addEventListener("click", () => {
+        document
+          .querySelector(".md-dropdown")
+          .classList.remove("md-dropdown-hidden");
+      });
   },
   methods: {
     // 获取html
@@ -58,19 +66,22 @@ export default defineComponent({
       this.html = html;
     },
     //上图片
-    async upload(files, callback) {
+    upload(files, callback) {
       const form = new FormData();
       form.append("avatar", files[0]);
       form.append("cookie", localStorage.getItem("token"));
 
-      const uploadimg = await http.post(import.meta.env.VITE_APP_API_URL + "/singleUpload", form, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      http
+        .post(import.meta.env.VITE_APP_API_URL + "/singleUpload", form, {
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
-        }
-      );
-    this.$toast(uploadimg.data.message)
-    callback(uploadimg.data.data)
+        })
+        .then((res) => {
+          console.log(res);
+          callback(res.data.data);
+          this.$toast(res.data.message);
+        });
     },
     // 保存内容
     async saved() {
@@ -111,6 +122,4 @@ export default defineComponent({
   </div>
 </template>
 
-<style>
-
-</style>
+<style></style>

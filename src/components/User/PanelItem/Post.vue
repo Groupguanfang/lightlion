@@ -4,48 +4,64 @@ import { dropPost } from "../../../api/Home";
 export default {
   data() {
     return {
-      loading: 'loading',
+      loading: "loading",
       data: [],
-    }
+    };
   },
   async mounted() {
-    const item = await getUserPost(localStorage.getItem('token'))
-    this.data = item.data.data
-    this.loading = ''
+    const item = await getUserPost(localStorage.getItem("token"));
+    this.data = item.data.data;
+    this.loading = "";
   },
   methods: {
     confirm(id) {
-      this.$store.commit('UserDeleteDialog',id)
-    }
+      this.$store.commit("UserDeleteDialog", id);
+    },
   },
   watch: {
-    async '$store.state.userCenter.id'() {
-      this.loading = "loading"
-      const del = await dropPost(this.$store.state.userCenter.id,localStorage.getItem('token'))
-      this.$toast(del.data.message)
-      
-      const item = await getUserPost(localStorage.getItem('token'))
-      this.data = item.data.data
-      this.loading = ""
-    }
-  }
-}
+    async "$store.state.userCenter.id"() {
+      this.loading = "loading";
+      const del = await dropPost(
+        this.$store.state.userCenter.id,
+        localStorage.getItem("token")
+      );
+      this.$toast(del.data.message);
+
+      const item = await getUserPost(localStorage.getItem("token"));
+      this.data = item.data.data;
+      this.loading = "";
+    },
+  },
+};
 </script>
 
 <template>
   <t-list class="post-list padding" :asyncLoading="loading">
-  <t-swipe-cell style="border-radius: 6px" v-for="(item,index) in data" :key="index">
-    <t-cell :title="item.title" :description="item.data">
-      <template #rightIcon>
-        <t-tag theme="success" v-if="item.status === 'publish'">已发布</t-tag>
-        <t-tag theme="warning" v-else-if="item.status === 'draft'">草稿</t-tag>
-        <t-tag theme="primary" v-else="item.status === 'check'">审核中</t-tag>
+    <div align="center" v-if="data.length === 0">暂无文章</div>
+    <t-swipe-cell
+      style="border-radius: 6px"
+      v-for="(item, index) in data"
+      :key="index"
+    >
+      <t-cell :title="item.title" :description="item.data">
+        <template #rightIcon>
+          <t-tag theme="success" v-if="item.status === 'publish'">已发布</t-tag>
+          <t-tag theme="warning" v-else-if="item.status === 'draft'">
+            草稿
+          </t-tag>
+          <t-tag theme="primary" v-else="item.status === 'check'">审核中</t-tag>
+        </template>
+      </t-cell>
+      <template #right>
+        <t-button
+          @click.native="confirm(item.id)"
+          style="border-top-right-radius: 6px;border-bottom-right-radius:6px"
+          theme="danger"
+          shape="square"
+          >删除</t-button
+        >
       </template>
-    </t-cell>
-    <template #right>
-      <t-button @click.native="confirm(item.id)" style="border-top-right-radius: 6px;border-bottom-right-radius:6px" theme="danger" shape="square">删除</t-button>
-    </template>
-  </t-swipe-cell>
+    </t-swipe-cell>
   </t-list>
 </template>
 

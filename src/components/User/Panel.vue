@@ -1,9 +1,9 @@
 <script>
-import Post from "./PanelItem/Post.vue"
-import Follow from "./PanelItem/Follow.vue"
+import Post from "./PanelItem/Post.vue";
+import Follow from "./PanelItem/Follow.vue";
 export default {
   props: ["follow", "fans", "money"],
-  components: { Post, Follow }
+  components: { Post, Follow },
 };
 </script>
 
