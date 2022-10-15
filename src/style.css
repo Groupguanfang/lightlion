@@ -14,6 +14,11 @@ body {
   padding: 14px;
 }
 
+h3.padding {
+  margin: 0;
+  padding-bottom: 0;
+}
+
 .t-action-sheet__cell {
   background: #fff;
   border: none;

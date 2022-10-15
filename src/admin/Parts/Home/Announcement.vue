@@ -15,11 +15,11 @@ export default {
   },
   methods: {
     async updateAnnouncement() {
-      this.loading = true
+      this.loading = true;
       const data = await changeAnnouncement(this.announcement);
       console.log(data);
-      this.loading = false
-      this.$toast(data.data.message)
+      this.loading = false;
+      this.$toast(data.data.message);
     },
   },
 };
@@ -28,7 +28,13 @@ export default {
 <template>
   <div class="setting-item">
     <t-input :disabled="loading" v-model="announcement" label="一句话公告" />
-  <t-button :disabled="loading" :loading="loading" @click="updateAnnouncement()" theme="primary" block>
+    <t-button
+      :disabled="loading"
+      :loading="loading"
+      @click="updateAnnouncement()"
+      theme="primary"
+      block
+    >
       保存公告
     </t-button>
   </div>

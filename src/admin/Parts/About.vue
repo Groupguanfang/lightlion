@@ -1,6 +1,4 @@
-<script>
-
-</script>
+<script></script>
 
 <template>
   <div class="about padding">

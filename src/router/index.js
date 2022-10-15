@@ -9,6 +9,13 @@ const routes = [
     },
   },
   {
+    path: "/group",
+    component: () => import("../pages/Chat/group.vue"),
+    meta: {
+      title: "Chat",
+    },
+  },
+  {
     path: "/login",
     component: () => import("../pages/User/Login.vue"),
     meta: {
@@ -52,7 +59,7 @@ const routes = [
   },
   {
     path: "/admin",
-    component: () => import("../Admin/index.vue"),
+    component: () => import("../admin/index.vue"),
     meta: {
       title: "超管中心",
     },

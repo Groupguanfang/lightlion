@@ -2,13 +2,19 @@
 import NativeShare from "nativeshare";
 import { ShareIcon } from "tdesign-icons-vue-next";
 import { openBili, copyToClip } from "../utils/copy";
+import { getOptions } from "../api/Admin";
 
 export default {
   components: { ShareIcon },
   data() {
     return {
       isOpen: false,
+      address: "",
     };
+  },
+  async mounted() {
+    const url = await getOptions("bilibili", localStorage.getItem("token"));
+    this.address = url.data.data.value;
   },
   methods: {
     closePop() {
@@ -16,9 +22,9 @@ export default {
     },
     copyAction() {
       copyToClip(() => {
-        alert("口令复制成功 点击关闭按钮调转到App Store")
-      })
-      openBili()
+        alert("口令复制成功 点击按钮调转到App Store");
+      });
+      openBili(this.address);
     },
     shareAction() {
       let nativeShare = new NativeShare();
@@ -68,11 +74,7 @@ export default {
               <div class="description">在手表上看B站！</div>
             </div>
             <div class="bottom">
-              <a
-                target="_blank"
-                class="link"
-                @click="copyAction"
-              >
+              <a target="_blank" class="link" @click="copyAction">
                 <t-button size="small" theme="primary" shape="round">
                   下载
                 </t-button>
@@ -94,12 +96,12 @@ export default {
             <t-step
               status="process"
               title="第二步"
-              content="复制口令“LightningLion”，打开刚下载的app后，点击按钮付款"
+              content="复制口令“LightningLion”，打开刚下载的app后，按照提示安装软件"
             />
             <t-step
               status="process"
               title="第三步"
-              content="在手表上找到腕上B站图标，开始使用"
+              content="在手表上找到「腕上RSS」图标，开始使用"
             />
           </t-steps>
         </div>
