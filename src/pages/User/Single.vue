@@ -12,6 +12,7 @@ export default {
       dialog: {
         show: false,
       },
+      updateCheckButtonDisabled: false,
     };
   },
   methods: {
@@ -23,9 +24,11 @@ export default {
       this.$router.push("/usercenter");
     },
     async changeCheck() {
-      const update = await updateCheck(this.id);
-      this.$toast.fail(update.data.message);
-      this.$router.push("/usercenter")
+      this.updateCheckButtonDisabled = true;
+      const update = await updateCheck(this.id, localStorage.getItem("token"));
+      this.$toast(update.data.message);
+      this.updateCheckButtonDisabled = false;
+      this.$router.push("/usercenter");
     },
   },
   async mounted() {
@@ -85,6 +88,8 @@ export default {
           block
           theme="primary"
           @click="changeCheck()"
+          :disabled="updateCheckButtonDisabled"
+          :loading="updateCheckButtonDisabled"
         >
           发布文章
         </t-button>
