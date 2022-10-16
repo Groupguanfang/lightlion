@@ -1,5 +1,5 @@
 import axios from "../utils/axios";
-import http from "axios"
+import http from "axios";
 /**
  * 获取文章接口
  *
@@ -45,21 +45,22 @@ export async function getAnnouncement() {
 export async function newDraft(title, data, comment, cookie, poster, id) {
   return await http({
     method: "post",
-    url: import.meta.env.VITE_APP_API_URL+"/postcreate",
-    data: {title,data,comment,cookie,poster,id}
-  })
+    url: import.meta.env.VITE_APP_API_URL + "/postcreate",
+    data: { title, data, comment, cookie, poster, id },
+  });
 }
 
-export async function dropPost(id,cookie) {
+export async function dropPost(id, cookie) {
   return await axios({
     method: "get",
     url: "/postdelete",
     params: {
-      cookie,id
-    }
-  })
+      cookie,
+      id,
+    },
+  });
 }
 
 export async function forgotPwd() {
-  return axios.get('/user/forgot')
+  return axios.get("/user/forgot");
 }
