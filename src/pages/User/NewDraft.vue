@@ -109,7 +109,6 @@ export default defineComponent({
           "",
           this.id
         );
-        console.log(update);
         this.$toast(update.data.message);
         if (update.data.code === 201) {
           this.id = update.data.data.insertId;

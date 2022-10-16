@@ -1,5 +1,5 @@
 <script>
-import { getPostItem } from "../../api/Home";
+import { getPostItem, dropPost } from "../../api/Home";
 export default {
   data() {
     return {
@@ -17,7 +17,10 @@ export default {
     confirm() {
       this.dialog.show = true;
     },
-    onConfirm() {},
+    async onConfirm() {
+      await dropPost(this.id, localStorage.getItem("token"));
+      this.$router.push("/usercenter");
+    },
   },
   async mounted() {
     document.querySelector("#root").addEventListener("scroll", () => {
@@ -58,7 +61,18 @@ export default {
         </template>
       </t-cell>
       <div class="operation">
-        <t-button shape="square" block>编辑文章</t-button>
+        <t-button
+          shape="square"
+          @click="
+            $router.push({
+              path: '/usercenter/post/edit',
+              query: { id },
+            })
+          "
+          block
+        >
+          编辑文章
+        </t-button>
         <t-button shape="square" block theme="primary">发布文章</t-button>
         <t-button @click="confirm()" shape="square" block theme="danger">
           删除文章
