@@ -85,6 +85,13 @@ const routes = [
       title: "媒体库",
     },
   },
+  {
+    path: "/usercenter/post/single",
+    component: () => import("../pages/User/Single.vue"),
+    meta: {
+      title: "文章管理",
+    },
+  },
 ];
 
 const router = createRouter({

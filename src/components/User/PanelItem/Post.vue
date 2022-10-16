@@ -12,6 +12,10 @@ export default {
   },
   async mounted() {
     let item = await getUserPost(localStorage.getItem("token"));
+    // 判断是否为空
+    if (item.data.data.length === 0) {
+      this.showEmpty = true;
+    }
     this.data = item.data.data;
     this.loading = "";
   },
@@ -49,7 +53,16 @@ export default {
       v-for="(item, index) in data"
       :key="index"
     >
-      <t-cell :title="item.title" :description="item.description">
+      <t-cell
+        @click="
+          $router.push({
+            path: '/usercenter/post/single',
+            query: { id: item.id },
+          })
+        "
+        :title="item.title"
+        :description="item.description"
+      >
         <template #rightIcon>
           <t-tag theme="success" v-if="item.status === 'publish'">已发布</t-tag>
           <t-tag theme="warning" v-else-if="item.status === 'draft'">
