@@ -45,8 +45,7 @@ export default defineComponent({
           },
         })
         .then((res) => {
-          console.log(res);
-          callback(res.data.data);
+          this.text = this.text + `  ![图片描述](${res.data.data})`;
           this.$toast(res.data.message);
         });
     },

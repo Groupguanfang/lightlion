@@ -36,6 +36,23 @@ export default {
     getHtml(html) {
       this.html = html;
     },
+    upload(files, callback) {
+      const form = new FormData();
+      form.append("avatar", files[0]);
+      form.append("cookie", localStorage.getItem("token"));
+
+      http
+        .post(import.meta.env.VITE_APP_API_URL + "/singleUpload", form, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          callback(res.data.data);
+          this.$toast(res.data.message);
+        });
+    },
     async saved() {
       this.saveDisabled = true;
       const save = await newDraft(

@@ -2,9 +2,10 @@
 import { getPostItem } from "../../api/Home";
 import BottomBar from "../../components/Post/BottomBar.vue";
 import { WifiIcon, UserIcon } from "tdesign-icons-vue-next";
+import SingleInfo from "./Single/SingleInfo.vue";
 import { h } from "vue";
 export default {
-  components: { WifiIcon, UserIcon, BottomBar },
+  components: { WifiIcon, UserIcon, BottomBar, SingleInfo },
   data() {
     return {
       data: {},
@@ -59,26 +60,23 @@ export default {
     <t-navbar class="header hide" id="navbar">{{ data.title }}</t-navbar>
     <t-loading theme="bar" :progress="progress" />
     <BottomBar />
-    <div class="content padding">
-      <div class="content-header">
-        <h1 class="title">{{ data.title }}</h1>
-        <div class="author">
-          <t-avatar>
-            <template #icon>
-              <UserIcon />
-            </template>
-          </t-avatar>
-          <div class="info">
-            {{ data.author }}
-          </div>
-        </div>
-      </div>
-      <main v-html="data.data"></main>
-    </div>
+
+    <main class="padding">
+      <h1>{{ data.title }}</h1>
+      <article v-html="data.data"></article>
+    </main>
   </div>
 </template>
 
-<style>
+<style lang="less">
+.t-navbar {
+  .t-navbar__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 58px;
+  }
+}
 .header {
   position: fixed;
   width: 100%;
