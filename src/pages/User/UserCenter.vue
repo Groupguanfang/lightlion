@@ -45,7 +45,7 @@ export default {
     try {
       const info = await getInfo(localStorage.getItem("token"));
 
-      if (info.code !== 500) {
+      if (info.data.code !== 500) {
         this.name = info.data.userdata.name;
         this.id = info.data.userdata.id;
         this.saying = info.data.userdata.saying;
