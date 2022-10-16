@@ -21,9 +21,9 @@ export default {
       showDialog: false,
       loading: true,
       maincontent: false,
-      userInfo: {
-      userdata: { id: "", name: "", avatar: "", saying: "" },                                
-      },
+      name: "",
+      id: "",
+      saying: "",
       showActionSheet: false,
       items: [
         {
@@ -46,7 +46,9 @@ export default {
       const info = await getInfo(localStorage.getItem("token"));
 
       if (info.code !== 500) {
-        this.userInfo = info.data;
+        this.name = info.data.userdata.name;
+        this.id = info.data.userdata.id;
+        this.saying = info.data.userdata.saying;
         this.loading = false;
         this.maincontent = true;
       } else {
@@ -144,10 +146,10 @@ export default {
           </t-avatar>
         </div>
         <div class="right">
-          <div class="name">{{ userInfo.userdata.name }}</div>
-          <div class="tags" theme="primary">ID：{{ userInfo.userdata.id }}</div>
+          <div class="name">{{ name }}</div>
+            <div class="tags" theme="primary">ID：{{ id }}</div>
           <div class="saying">
-            {{ userInfo.userdata.saying }}
+            {{ saying }}
           </div>
         </div>
       </div>
