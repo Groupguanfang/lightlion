@@ -82,10 +82,10 @@ export async function sendEmail(email) {
 /**
   * 修改密码
   */
-export async function changePwd(newpass,cookie) {
-  return axios.post('/user/updatepassword',{
+export async function changePwd(newpass, cookie) {
+  return axios.post('/user/updatepassword', {
     params: {
-      newpass,cookie
+      newpass, cookie
     }
   })
 }
@@ -93,10 +93,10 @@ export async function changePwd(newpass,cookie) {
 /**
   * 修改邮箱
   */
-export async function changeMail(cookie,email,code) {
-  return await axios.get('/user/updateemail',{
+export async function changeMail(cookie, email, code) {
+  return await axios.get('/user/updateemail', {
     params: {
-      cookie,email,code
+      cookie, email, code
     }
   })
 }
@@ -105,7 +105,7 @@ export async function changeMail(cookie,email,code) {
   * 获取文章
   */
 export async function getUserPost(cookie) {
-  return await axios.get('user/post',{
+  return await axios.get('user/post', {
     params: {
       cookie
     }
@@ -121,6 +121,22 @@ export async function getMedia(cookie) {
     method: "get",
     params: {
       cookie
+    }
+  })
+}
+
+/**
+ * 发布文章至审核状态
+ * 
+ * @author Zero
+ * @since 2022
+ */
+export async function updateCheck(id, cookie) {
+  return await axios({
+    url: "/user/updatecheck",
+    method: "get",
+    params: {
+      cookie, id
     }
   })
 }

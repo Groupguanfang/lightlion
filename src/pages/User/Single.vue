@@ -1,5 +1,6 @@
 <script>
 import { getPostItem, dropPost } from "../../api/Home";
+import { updateCheck } from "../../api/User";
 export default {
   data() {
     return {
@@ -20,6 +21,11 @@ export default {
     async onConfirm() {
       await dropPost(this.id, localStorage.getItem("token"));
       this.$router.push("/usercenter");
+    },
+    async changeCheck() {
+      const update = await updateCheck(this.id);
+      this.$toast.fail(update.data.message);
+      this.$router.push("/usercenter")
     },
   },
   async mounted() {
@@ -78,6 +84,7 @@ export default {
           shape="square"
           block
           theme="primary"
+          @click="changeCheck()"
         >
           发布文章
         </t-button>

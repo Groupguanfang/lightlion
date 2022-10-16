@@ -36,7 +36,7 @@ export default {
     getHtml(html) {
       this.html = html;
     },
-    upload(files, callback) {
+    upload(files) {
       const form = new FormData();
       form.append("avatar", files[0]);
       form.append("cookie", localStorage.getItem("token"));
@@ -48,8 +48,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
-          callback(res.data.data);
+          this.text = this.text + `![图片描述](${res.data.data})`;
           this.$toast(res.data.message);
         });
     },

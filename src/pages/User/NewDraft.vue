@@ -33,7 +33,7 @@ export default defineComponent({
       this.html = html;
     },
     //上图片
-    upload(files, callback) {
+    upload(files) {
       const form = new FormData();
       form.append("avatar", files[0]);
       form.append("cookie", localStorage.getItem("token"));
