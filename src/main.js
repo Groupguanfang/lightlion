@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import TDesign from "tdesign-mobile-vue";
-import "./style.css";
+import "./style.less";
 
 const lightLion = createApp(App);
 lightLion.use(router);
