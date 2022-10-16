@@ -74,7 +74,7 @@ export default {
       <template #right>
         <t-button
           @click.native="confirm(item.id)"
-          style="border-top-right-radius: 6px;border-bottom-right-radius:6px"
+          style="border-top-right-radius: 6px; border-bottom-right-radius: 6px"
           theme="danger"
           shape="square"
         >
@@ -85,9 +85,12 @@ export default {
   </t-list>
 </template>
 
-<style>
+<style scoped>
 .post-list {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .post-list .t-cell__description {
   overflow: hidden;
