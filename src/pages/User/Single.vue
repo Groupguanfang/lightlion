@@ -1,5 +1,6 @@
 <script>
 import { getPostItem, dropPost } from "../../api/Home";
+import { updateCheck } from "../../api/User";
 export default {
   data() {
     return {
@@ -11,6 +12,7 @@ export default {
       dialog: {
         show: false,
       },
+      updateCheckButtonDisabled: false,
     };
   },
   methods: {
@@ -19,6 +21,13 @@ export default {
     },
     async onConfirm() {
       await dropPost(this.id, localStorage.getItem("token"));
+      this.$router.push("/usercenter");
+    },
+    async changeCheck() {
+      this.updateCheckButtonDisabled = true;
+      const update = await updateCheck(this.id, localStorage.getItem("token"));
+      this.$toast(update.data.message);
+      this.updateCheckButtonDisabled = false;
       this.$router.push("/usercenter");
     },
   },
@@ -57,7 +66,7 @@ export default {
         <template #rightIcon>
           <t-tag theme="success" v-if="status === 'publish'">已发布</t-tag>
           <t-tag theme="warning" v-else-if="status === 'draft'"> 草稿 </t-tag>
-          <t-tag theme="primary" v-else="status === 'check'">审核中</t-tag>
+          <t-tag theme="primary" v-else-if="status === 'check'">审核中</t-tag>
         </template>
       </t-cell>
       <div class="operation">
@@ -73,7 +82,17 @@ export default {
         >
           编辑文章
         </t-button>
-        <t-button shape="square" block theme="primary">发布文章</t-button>
+        <t-button
+          v-if="status === 'draft'"
+          shape="square"
+          block
+          theme="primary"
+          @click="changeCheck()"
+          :disabled="updateCheckButtonDisabled"
+          :loading="updateCheckButtonDisabled"
+        >
+          发布文章
+        </t-button>
         <t-button @click="confirm()" shape="square" block theme="danger">
           删除文章
         </t-button>
@@ -81,41 +100,44 @@ export default {
     </div>
 
     <h1 class="padding title">{{ title }}</h1>
-    <main class="padding" v-html="data"></main>
+    <main class="padding">
+      <article v-html="data"></article>
+    </main>
   </div>
 </template>
 
 <style scoped lang="less">
 .t-navbar {
-    box-shadow: 0px -12px 20px 0px #888;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  box-shadow: 0px -12px 20px 0px #888;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .title {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    margin-top: 1.4em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 1.4em;
+  font-size: 32px;
 }
 main {
-    margin-bottom: 5em;
+  margin-bottom: 5em;
 }
 .operation-container {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: -2px 8px 20px 0px #888;
+  .t-cell {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    box-shadow: -2px 8px 20px 0px #888;
-    .t-cell {
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
+  }
 }
 .operation {
-    display: flex;
-    .t-button {
-        border-radius: 0
-    }
+  display: flex;
+  .t-button {
+    border-radius: 0;
+  }
 }
 </style>

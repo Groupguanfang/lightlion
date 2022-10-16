@@ -1,6 +1,8 @@
 <script>
 import MdEditor from "md-editor-v3";
+import TurnMarkDown from "turndown";
 import "md-editor-v3/lib/style.css";
+import empty from "../../utils/empty";
 import { newDraft, getPostItem } from "../../api/Home";
 import { tools, fixEditor } from "../../utils/editor";
 
@@ -9,7 +11,11 @@ export default {
   data() {
     return {
       data: "",
+      title: "",
       tool: tools,
+      id: null,
+      saveDisabled: true,
+      html: "",
     };
   },
   async mounted() {
@@ -20,6 +26,49 @@ export default {
     fixEditor();
     const data = await getPostItem(this.$route.query.id);
     console.log(data);
+    const constructMarkDown = new TurnMarkDown();
+    this.data = constructMarkDown.turndown(data.data.data);
+    this.title = data.data.title;
+    this.id = data.data.id;
+    this.saveDisabled = false;
+  },
+  methods: {
+    getHtml(html) {
+      this.html = html;
+    },
+    upload(files) {
+      const form = new FormData();
+      form.append("avatar", files[0]);
+      form.append("cookie", localStorage.getItem("token"));
+
+      http
+        .post(import.meta.env.VITE_APP_API_URL + "/singleUpload", form, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          this.text = this.text + `![图片描述](${res.data.data})`;
+          this.$toast(res.data.message);
+        });
+    },
+    async saved() {
+      this.saveDisabled = true;
+      const save = await newDraft(
+        this.title,
+        this.html,
+        "open",
+        localStorage.getItem("token"),
+        "",
+        this.id
+      );
+      console.log(save);
+      this.$toast({
+        theme: "success",
+        message: save.data.message,
+      });
+      this.saveDisabled = false;
+    },
   },
 };
 </script>
@@ -27,7 +76,23 @@ export default {
 <template>
   <div class="editpost">
     <t-navbar>编辑文章</t-navbar>
-    <t-input placeholder="请输入文章标题"></t-input>
-    <MdEditor v-model="data" :toolbars="tool" />
+    <t-input v-model="title" placeholder="请输入文章标题" />
+    <MdEditor
+      :noKatex="true"
+      @on-Html-changed="getHtml"
+      v-model="data"
+      :toolbars="tool"
+    />
+    <div class="padding">
+      <t-button
+        :disabled="saveDisabled"
+        :loading="saveDisabled"
+        block
+        theme="primary"
+        @click="saved()"
+      >
+        保存
+      </t-button>
+    </div>
   </div>
 </template>

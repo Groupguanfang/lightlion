@@ -1,5 +1,4 @@
 <script>
-import axios from "../../utils/axios";
 import { getPost } from "../../api/Home";
 export default {
   data() {
@@ -11,7 +10,7 @@ export default {
   async mounted() {
     let postdata = await getPost();
     this.post = postdata.data;
-    console.log(this.post);
+    console.log(postdata);
     this.loading = false;
   },
   methods: {
@@ -31,7 +30,7 @@ export default {
         @click="go(item.id)"
         :key="item"
         :title="item.title"
-        :description="item.data"
+        :description="item.description"
       >
       </t-cell>
     </t-list>
