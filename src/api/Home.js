@@ -1,5 +1,7 @@
 import axios from "../utils/axios";
 import http from "axios";
+const baseURL = import.meta.env.VITE_APP_API_URL
+
 /**
  * 获取文章接口
  *
@@ -12,7 +14,7 @@ export async function getPost() {
 }
 
 /**
- * 获取文章接口
+ * 获取单篇文章接口
  *
  * @returns [object] post list
  * @author Zero
@@ -42,11 +44,12 @@ export async function getAnnouncement() {
  * @author Zero
  * @since 2022
  */
-export async function newDraft(title, data, comment, cookie, poster, id) {
+export async function newDraft(title, data, comment, cookie, poster, id ,category) {
   return await http({
     method: "post",
-    url: import.meta.env.VITE_APP_API_URL + "/postcreate",
-    data: { title, data, comment, cookie, poster, id },
+    baseURL,
+    url: "/postcreate",
+    data: { title, data, comment, cookie, poster, id, category },
   });
 }
 

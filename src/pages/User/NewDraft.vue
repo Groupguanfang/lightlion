@@ -17,6 +17,14 @@ export default defineComponent({
       id: "",
       title: "",
       tool: tools,
+      options: [
+        {
+          key: 1,
+          title: "杂谈",
+        },
+      ],
+      category: "",
+      posterUploader: import.meta.env.VITE_APP_API_URL + "/singleUpload",
     };
   },
   mounted() {
@@ -70,11 +78,15 @@ export default defineComponent({
       }
       this.saveButtonDisabled = false;
     },
+    onFail() {
+      this.$toast("上传失败 请重试");
+    },
   },
 });
 </script>
 
 <template>
+  lp
   <div class="newdraft">
     <t-navbar>新建草稿</t-navbar>
     <t-input v-model="title" placeholder="请输入文章标题" />
@@ -86,6 +98,13 @@ export default defineComponent({
       @onUploadImg="upload"
     />
     <div class="options padding">
+      <t-dropdown-menu>
+        <t-dropdown-item
+          label="选择一个分类..."
+          :options="options"
+          v-model:value="category"
+        />
+      </t-dropdown-menu>
       <t-button
         :disabled="saveButtonDisabled"
         :loading="saveButtonDisabled"

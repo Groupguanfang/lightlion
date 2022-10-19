@@ -6,15 +6,14 @@ import Panel from "../../components/User/Panel.vue";
 export default {
   components: { TabBar, UserIcon, Panel, AddIcon },
   watch: {
-    '$store.state.userCenter.dialog'() {
-      console.log(this.showDialog)
-      if (this.$store.state.userCenter.dialog)
-      {
-        this.showDialog = true
+    "$store.state.userCenter.dialog"() {
+      console.log(this.showDialog);
+      if (this.$store.state.userCenter.dialog) {
+        this.showDialog = true;
       } else {
-        this.showDialog = false
+        this.showDialog = false;
       }
-    }
+    },
   },
   data() {
     return {
@@ -36,8 +35,8 @@ export default {
         },
         {
           label: "媒体",
-          icon: import.meta.env.VITE_APP_API_URL + "/static/media.svg"
-        }
+          icon: import.meta.env.VITE_APP_API_URL + "/static/media.svg",
+        },
       ],
     };
   },
@@ -76,15 +75,15 @@ export default {
       } else if (selectedIndex === 1) {
         this.$router.push("/usercenter/settings");
       } else if (selectedIndex === 2) {
-        this.$router.push("/usercenter/media")
+        this.$router.push("/usercenter/media");
       }
     },
     confirm() {
-      this.$store.commit('UserDeleteId')
+      this.$store.commit("UserDeleteId");
     },
     close() {
-      this.$store.commit('UserDeleteDialog',null)
-    }
+      this.$store.commit("UserDeleteDialog", null);
+    },
   },
 };
 </script>
@@ -147,7 +146,7 @@ export default {
         </div>
         <div class="right">
           <div class="name">{{ name }}</div>
-            <div class="tags" theme="primary">ID：{{ id }}</div>
+          <div class="tags" theme="primary">ID：{{ id }}</div>
           <div class="saying">
             {{ saying }}
           </div>
@@ -159,7 +158,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .headerCard {
   padding: 14px;
   padding-bottom: 0;
@@ -179,6 +178,9 @@ export default {
 .headerCard .right .tags {
   clear: both;
   width: 100%;
+}
+.usercenter {
+  padding-bottom: 40px;
 }
 .usercenter .fab {
   position: fixed;
