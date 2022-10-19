@@ -23,6 +23,7 @@ export default {
       name: "",
       id: "",
       saying: "",
+      isAdmin: false,
       showActionSheet: false,
       items: [
         {
@@ -48,6 +49,9 @@ export default {
         this.name = info.data.userdata.name;
         this.id = info.data.userdata.id;
         this.saying = info.data.userdata.saying;
+        if (info.data.userdata.level == 10) {
+          this.isAdmin = true
+        }
         this.loading = false;
         this.maincontent = true;
       } else {
@@ -100,7 +104,7 @@ export default {
       confirmBtn="删除"
       @confirm="confirm()"
       @close="close()"
-    ></t-dialog>
+    />
     <t-fab
       class="fab"
       text="新建草稿"
@@ -145,8 +149,21 @@ export default {
           </t-avatar>
         </div>
         <div class="right">
-          <div class="name">{{ name }}</div>
-          <div class="tags" theme="primary">ID：{{ id }}</div>
+          <div class="name">
+            {{ name }}
+          </div>
+          <div class="tags">
+            <t-tag>
+              ID：{{ id }}
+            </t-tag>
+            <t-tag
+              theme="primary"
+              v-if="isAdmin"
+            >
+              管理员
+            </t-tag>
+          </div>
+          
           <div class="saying">
             {{ saying }}
           </div>
@@ -169,6 +186,7 @@ export default {
 .headerCard .right {
   width: 100%;
   clear: both;
+  gap: 24px;
 }
 
 .headerCard .right .name {
@@ -178,10 +196,14 @@ export default {
 .headerCard .right .tags {
   clear: both;
   width: 100%;
+  display: flex;
+  gap: 10px;
 }
+
 .usercenter {
   padding-bottom: 40px;
 }
+
 .usercenter .fab {
   position: fixed;
   z-index: 99999;
