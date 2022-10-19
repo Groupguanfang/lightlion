@@ -112,6 +112,11 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  .t-navbar__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 .title {
   padding-bottom: 0;

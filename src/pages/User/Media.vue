@@ -5,32 +5,36 @@ export default {
   data() {
     return {
       data: [],
-      urls: [],
-      showViewer: false
     }
+  },
+  async mounted() {
+    this.refreshData()
   },
   methods: {
-    show() {
-      this.showViewer = true
-    }
-  },
-  async created() {
-    const data = await getMedia(localStorage.getItem('token'))
-    this.data = data.data.data
-  },
+    async refreshData() {
+      const data = await getMedia(localStorage.getItem('token'))
+      this.data = data.data.data
+    },
+    uploadImage(e) {
+      this.refreshData()
+    },
+  }
 }
 </script>
 
 <template>
   <div class="media">
     <t-navbar>媒体库</t-navbar>
-    <div v-for="(item,index) in data" :key="index" style="width: 72px;height: 72px">
-    <img class="image-container" @click="show" :src="item.url"/>
+    <input class="uploader" type="file" @change="uploadImage($event)" accept="image/*" />
+    <div class="files">
+      <div v-for="(item,index) in data" :key="index" style="width: 72px;height: 72px">
+      <img class="image-container" @click="show" :src="item.url"/>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .image-container {
   width: 72px;
   height: 72px;
