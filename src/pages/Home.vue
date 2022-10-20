@@ -4,9 +4,10 @@ import AppGird from "../components/Home/AppGird.vue";
 import { UserIcon } from "tdesign-icons-vue-next";
 import TabBar from "../components/TabBar.vue";
 import { getAnnouncement } from "../api/Home";
+import List from "../components/Discover/PostList.vue"
 import empty from "../utils/empty";
 export default {
-  components: { TabBar, Swiper, AppGird, UserIcon },
+  components: { TabBar, Swiper, AppGird, UserIcon, List },
   data() {
     return {
       notice: true,
@@ -46,6 +47,7 @@ export default {
     <Swiper />
     <t-notice-bar id="home-notice" v-model="notice" :content="content" />
     <AppGird />
+    <List />
     <TabBar />
   </div>
 </template>

@@ -25,6 +25,7 @@ export default {
       saying: "",
       isAdmin: false,
       showActionSheet: false,
+      level: null,
       items: [
         {
           label: "登出",
@@ -49,6 +50,7 @@ export default {
         this.name = info.data.userdata.name;
         this.id = info.data.userdata.id;
         this.saying = info.data.userdata.saying;
+        this.level = info.data.userdata.level;
         if (info.data.userdata.level == 10) {
           this.isAdmin = true
         }
@@ -158,6 +160,12 @@ export default {
             </t-tag>
             <t-tag
               theme="primary"
+              v-if="isAdmin"
+            >
+              Lv{{ level }}
+            </t-tag>
+            <t-tag
+              theme="warning"
               v-if="isAdmin"
             >
               管理员
