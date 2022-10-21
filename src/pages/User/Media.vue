@@ -7,7 +7,9 @@ export default {
     return {
       data: [],
       loading: false,
-      showUploader: true
+      showUploader: true,
+      listLoad: true,
+      progress: 0,
     }
   },
   async mounted() {
@@ -15,8 +17,16 @@ export default {
   },
   methods: {
     async refreshData() {
+      const timer = 
+      setInterval(() => {
+        this.progress + 0.1;
+      });
+      this.listLoad = true
       const data = await getMedia(localStorage.getItem('token'))
       this.data = data.data.data
+      this.listLoad = false
+      timer = null
+      this.progress = 1
     },
     async uploadImage(e) {
       this.loading = true
@@ -44,6 +54,11 @@ export default {
 
 <template>
   <div class="media">
+    <t-loading
+      theme="bar"
+      v-if="listLoad"
+      :progress="progress"
+    />
     <t-navbar>媒体库</t-navbar>
     <t-loading class="loading" v-if="loading" text="上传中 请勿刷新页面" />
     <div v-if="showUploader" class="container">
@@ -55,6 +70,7 @@ export default {
         accept="image/*"
       />
     </div>
+    
     <div class="files">
       <div class="item" v-for="(item,index) in data" :key="index">
       <img class="image-container" @click="show" :src="item.url"/>
